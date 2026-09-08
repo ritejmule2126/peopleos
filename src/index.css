@@ -1,4 +1,26 @@
 :root {
+  /* Theme Semantic Tokens - Light Mode */
+  --bg-app: #f6f8fb;
+  --bg-surface: #ffffff;
+  --bg-surface-secondary: #f8fafc;
+  --border-color: #e2e8f0;
+  --border-subtle: #f1f5f9;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+  --card-bg: #ffffff;
+  --card-border: #e2e8f0;
+  --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  --header-bg: #ffffff;
+  --header-border: #e2e8f0;
+  --sidebar-bg: #ffffff;
+  --sidebar-border: #e2e8f0;
+  --input-bg: #ffffff;
+  --input-border: #cbd5e1;
+  --table-header-bg: #f8fafc;
+  --hover-bg: #f1f5f9;
+  --primary-tint: #eff6ff;
+
   /* Color Palette - Zoho Enterprise Inspired */
   --primary-50: #eff6ff;
   --primary-100: #dbeafe;
@@ -63,6 +85,39 @@
   --transition-normal: 0.25s ease;
 }
 
+[data-theme="dark"],
+.dark {
+  /* Theme Semantic Tokens - Dark Mode */
+  --bg-app: #0b0f19;
+  --bg-surface: #111726;
+  --bg-surface-secondary: #172033;
+  --border-color: #1e293b;
+  --border-subtle: #1e293b;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --card-bg: #111726;
+  --card-border: #1e293b;
+  --card-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+  --header-bg: #0f1523;
+  --header-border: #1e293b;
+  --sidebar-bg: #0d121f;
+  --sidebar-border: #1e293b;
+  --input-bg: #172033;
+  --input-border: #334155;
+  --table-header-bg: #172033;
+  --hover-bg: #172033;
+  --primary-tint: rgba(0, 102, 255, 0.15);
+
+  --slate-50: #172033;
+  --slate-100: #1e293b;
+  --slate-200: #334155;
+  --slate-300: #475569;
+  --slate-700: #cbd5e1;
+  --slate-800: #e2e8f0;
+  --slate-900: #f8fafc;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -73,10 +128,11 @@ html, body {
   height: 100%;
   width: 100%;
   font-family: var(--font-family);
-  background-color: #f6f8fb;
-  color: var(--slate-800);
+  background-color: var(--bg-app);
+  color: var(--text-primary);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 #root {
@@ -94,11 +150,11 @@ html, body {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: var(--input-border);
   border-radius: 999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+  background: var(--text-muted);
 }
 
 /* App Shell Layout */
@@ -107,7 +163,7 @@ html, body {
   height: 100vh;
   width: 100vw;
   overflow: hidden;
-  background: #f4f6f9;
+  background: var(--bg-app);
 }
 
 .main-content-area {
@@ -123,7 +179,8 @@ html, body {
   flex: 1;
   overflow-y: auto;
   padding: 24px 32px;
-  background-color: #f6f8fa;
+  background-color: var(--bg-app);
+  transition: background-color 0.2s ease;
 }
 
 /* Page Header */
@@ -140,7 +197,7 @@ html, body {
   font-family: var(--font-heading);
   font-size: 24px;
   font-weight: 700;
-  color: var(--slate-900);
+  color: var(--text-primary);
   display: flex;
   align-items: center;
   gap: 10px;
@@ -148,17 +205,17 @@ html, body {
 
 .page-subtitle {
   font-size: 13px;
-  color: var(--slate-500);
+  color: var(--text-secondary);
   margin-top: 4px;
 }
 
 /* Common Card */
 .zp-card {
-  background: #ffffff;
-  border: 1px solid var(--slate-200);
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-xs);
-  transition: box-shadow var(--transition-fast), border-color var(--transition-fast);
+  box-shadow: var(--card-shadow);
+  transition: box-shadow var(--transition-fast), border-color var(--transition-fast), background-color 0.2s ease;
 }
 
 .zp-card:hover {
@@ -167,7 +224,7 @@ html, body {
 
 .zp-card-header {
   padding: 16px 20px;
-  border-bottom: 1px solid var(--slate-100);
+  border-bottom: 1px solid var(--border-color);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -176,7 +233,7 @@ html, body {
 .zp-card-title {
   font-size: 15px;
   font-weight: 600;
-  color: var(--slate-900);
+  color: var(--text-primary);
   display: flex;
   align-items: center;
   gap: 8px;
@@ -384,8 +441,8 @@ textarea.form-control {
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background-color: rgba(15, 23, 42, 0.45);
-  backdrop-filter: blur(3px);
+  background-color: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(4px);
   z-index: 1000;
   display: flex;
   align-items: center;
@@ -395,7 +452,8 @@ textarea.form-control {
 }
 
 .modal-container {
-  background: #ffffff;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-xl);
   width: 100%;
@@ -405,11 +463,12 @@ textarea.form-control {
   flex-direction: column;
   overflow: hidden;
   animation: slideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  color: var(--text-primary);
 }
 
 .modal-header {
   padding: 18px 24px;
-  border-bottom: 1px solid var(--slate-100);
+  border-bottom: 1px solid var(--border-color);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -418,30 +477,31 @@ textarea.form-control {
 .modal-title {
   font-size: 17px;
   font-weight: 700;
-  color: var(--slate-900);
+  color: var(--text-primary);
 }
 
 .modal-body {
   padding: 24px;
   overflow-y: auto;
+  color: var(--text-primary);
 }
 
 .modal-footer {
   padding: 16px 24px;
-  border-top: 1px solid var(--slate-100);
+  border-top: 1px solid var(--border-color);
   display: flex;
   align-items: center;
   justify-content: flex-end;
   gap: 12px;
-  background: #fafbfc;
+  background: var(--bg-surface-secondary);
 }
 
 /* Slide-over Drawer */
 .drawer-overlay {
   position: fixed;
   inset: 0;
-  background-color: rgba(15, 23, 42, 0.4);
-  backdrop-filter: blur(2px);
+  background-color: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(3px);
   z-index: 1000;
   animation: fadeIn 0.2s ease;
 }
@@ -453,12 +513,203 @@ textarea.form-control {
   bottom: 0;
   width: 500px;
   max-width: 90vw;
-  background: #ffffff;
-  box-shadow: -8px 0 25px rgba(0, 0, 0, 0.15);
+  background: var(--card-bg);
+  border-left: 1px solid var(--border-color);
+  box-shadow: -8px 0 25px rgba(0, 0, 0, 0.25);
   z-index: 1001;
   display: flex;
   flex-direction: column;
+  color: var(--text-primary);
   animation: slideLeft 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* =========================================================
+   DARK MODE COMPONENT OVERRIDES & SEAMLESS THEME SWITCHING
+   ========================================================= */
+
+[data-theme="dark"],
+.dark {
+  color-scheme: dark;
+}
+
+[data-theme="dark"] .zp-card,
+.dark .zp-card {
+  background-color: var(--card-bg) !important;
+  border-color: var(--card-border) !important;
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .zp-card-header,
+.dark .zp-card-header {
+  border-bottom-color: var(--border-color) !important;
+}
+
+[data-theme="dark"] .zp-card-title,
+.dark .zp-card-title {
+  color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .zp-table-wrapper,
+.dark .zp-table-wrapper {
+  background-color: var(--card-bg) !important;
+  border-color: var(--border-color) !important;
+}
+
+[data-theme="dark"] .zp-table th,
+.dark .zp-table th {
+  background-color: var(--table-header-bg) !important;
+  color: var(--text-secondary) !important;
+  border-bottom-color: var(--border-color) !important;
+}
+
+[data-theme="dark"] .zp-table td,
+.dark .zp-table td {
+  border-bottom-color: var(--border-subtle) !important;
+  color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .zp-table tr:hover td,
+.dark .zp-table tr:hover td {
+  background-color: var(--hover-bg) !important;
+}
+
+[data-theme="dark"] .form-control,
+.dark .form-control {
+  background-color: var(--input-bg) !important;
+  border-color: var(--input-border) !important;
+  color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .form-control:focus,
+.dark .form-control:focus {
+  border-color: var(--brand-zoho) !important;
+  box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.25) !important;
+}
+
+[data-theme="dark"] .form-label,
+.dark .form-label {
+  color: var(--text-secondary) !important;
+}
+
+[data-theme="dark"] .btn-secondary,
+.dark .btn-secondary {
+  background-color: var(--bg-surface-secondary) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border-color) !important;
+}
+
+[data-theme="dark"] .btn-secondary:hover,
+.dark .btn-secondary:hover {
+  background-color: var(--hover-bg) !important;
+  border-color: #475569 !important;
+}
+
+[data-theme="dark"] .btn-ghost,
+.dark .btn-ghost {
+  color: var(--text-secondary);
+}
+
+[data-theme="dark"] .btn-ghost:hover,
+.dark .btn-ghost:hover {
+  background-color: var(--hover-bg);
+  color: var(--text-primary);
+}
+
+/* Dark badges for perfect contrast */
+[data-theme="dark"] .badge-neutral,
+.dark .badge-neutral {
+  background-color: var(--bg-surface-secondary);
+  color: var(--text-secondary);
+  border-color: var(--border-color);
+}
+[data-theme="dark"] .badge-success,
+.dark .badge-success {
+  background-color: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border-color: rgba(16, 185, 129, 0.3);
+}
+[data-theme="dark"] .badge-warning,
+.dark .badge-warning {
+  background-color: rgba(245, 158, 11, 0.15);
+  color: #fbbf24;
+  border-color: rgba(245, 158, 11, 0.3);
+}
+[data-theme="dark"] .badge-danger,
+.dark .badge-danger {
+  background-color: rgba(239, 68, 68, 0.15);
+  color: #f87171;
+  border-color: rgba(239, 68, 68, 0.3);
+}
+[data-theme="dark"] .badge-primary,
+.dark .badge-primary {
+  background-color: rgba(59, 130, 246, 0.15);
+  color: #60a5fa;
+  border-color: rgba(59, 130, 246, 0.3);
+}
+[data-theme="dark"] .badge-purple,
+.dark .badge-purple {
+  background-color: rgba(139, 92, 246, 0.15);
+  color: #a78bfa;
+  border-color: rgba(139, 92, 246, 0.3);
+}
+
+/* Dynamic dark adjustments for nested cards, stat items, and inputs */
+[data-theme="dark"] select.form-control option,
+.dark select.form-control option {
+  background-color: var(--bg-surface);
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] div[style*="background: #ffffff"],
+[data-theme="dark"] div[style*="backgroundColor: #ffffff"],
+[data-theme="dark"] div[style*="background: rgb(255, 255, 255)"],
+[data-theme="dark"] div[style*="backgroundColor: rgb(255, 255, 255)"] {
+  background-color: var(--card-bg) !important;
+  border-color: var(--card-border) !important;
+}
+
+[data-theme="dark"] div[style*="background: #f8fafc"],
+[data-theme="dark"] div[style*="backgroundColor: #f8fafc"],
+[data-theme="dark"] div[style*="background: rgb(248, 250, 252)"],
+[data-theme="dark"] div[style*="backgroundColor: rgb(248, 250, 252)"] {
+  background-color: var(--bg-surface-secondary) !important;
+  border-color: var(--border-color) !important;
+}
+
+[data-theme="dark"] div[style*="color: #0f172a"],
+[data-theme="dark"] span[style*="color: #0f172a"],
+[data-theme="dark"] h1[style*="color: #0f172a"],
+[data-theme="dark"] h2[style*="color: #0f172a"],
+[data-theme="dark"] h3[style*="color: #0f172a"],
+[data-theme="dark"] div[style*="color: rgb(15, 23, 42)"],
+[data-theme="dark"] span[style*="color: rgb(15, 23, 42)"] {
+  color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] div[style*="color: #334155"],
+[data-theme="dark"] span[style*="color: #334155"],
+[data-theme="dark"] div[style*="color: #475569"],
+[data-theme="dark"] span[style*="color: #475569"] {
+  color: var(--text-secondary) !important;
+}
+
+/* Smooth transition between light and dark across components */
+body,
+.app-shell,
+.page-body,
+.zp-card,
+.zp-table-wrapper,
+.modal-container,
+.drawer-container,
+header,
+aside,
+input,
+select,
+textarea {
+  transition: background-color 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              color 0.15s ease,
+              box-shadow 0.25s ease !important;
 }
 
 @keyframes fadeIn {

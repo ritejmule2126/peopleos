@@ -1,4 +1,5 @@
 export type UserRole = 'FOUNDER' | 'HR_ADMIN' | 'MANAGER' | 'EMPLOYEE';
+export type ThemeMode = 'light' | 'dark';
 
 export type EmploymentStatus = 'Active' | 'On Leave' | 'Probation' | 'Remote' | 'Terminated';
 export type EmploymentType = 'Full Time' | 'Part Time' | 'Contract' | 'Intern';

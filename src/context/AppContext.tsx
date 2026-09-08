@@ -136,6 +136,10 @@ interface AppContextType {
   isSearchModalOpen: boolean;
   setIsSearchModalOpen: (open: boolean) => void;
 
+  // Theme Management
+  theme: 'light' | 'dark';
+  toggleTheme: () => void;
+
   // Reset to initial demo data
   resetDemoData: () => Promise<void>;
 }
@@ -235,6 +239,27 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   );
   const [searchQuery, setSearchQuery] = useState('');
   const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
+
+  // Theme Management (Default: light)
+  const [theme, setTheme] = useState<'light' | 'dark'>(() => {
+    return (localStorage.getItem('peopleos_theme') as 'light' | 'dark') || 'light';
+  });
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+      document.body.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+      document.body.classList.remove('dark');
+    }
+    localStorage.setItem('peopleos_theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
+  };
 
   // ==========================================
   // 1. INITIAL BACKEND DATA SYNC
@@ -1204,6 +1229,8 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         setSearchQuery,
         isSearchModalOpen,
         setIsSearchModalOpen,
+        theme,
+        toggleTheme,
         resetDemoData,
       }}
     >

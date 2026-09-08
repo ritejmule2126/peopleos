@@ -12,6 +12,8 @@ import {
   LifeBuoy,
   Heart,
   ChevronDown,
+  Sun,
+  Moon,
 } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
 import { UserRole } from '../../types';
@@ -32,6 +34,8 @@ export const Header: React.FC = () => {
     markAllNotificationsAsRead,
     setIsSearchModalOpen,
     setActiveModule,
+    theme,
+    toggleTheme,
   } = useApp();
 
   const [isNotifOpen, setIsNotifOpen] = useState(false);
@@ -51,14 +55,15 @@ export const Header: React.FC = () => {
     <header
       style={{
         height: '68px',
-        backgroundColor: '#ffffff',
-        borderBottom: '1px solid #e2e8f0',
+        backgroundColor: 'var(--header-bg)',
+        borderBottom: '1px solid var(--header-border)',
         padding: '0 28px',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
         flexShrink: 0,
         zIndex: 50,
+        transition: 'background-color 0.2s ease, border-color 0.2s ease',
       }}
     >
       {/* Left: Global Search trigger */}
@@ -71,35 +76,35 @@ export const Header: React.FC = () => {
             alignItems: 'center',
             justifyContent: 'space-between',
             padding: '8px 14px',
-            backgroundColor: '#f1f5f9',
-            border: '1px solid #e2e8f0',
+            backgroundColor: 'var(--bg-surface-secondary)',
+            border: '1px solid var(--border-color)',
             borderRadius: '8px',
-            color: '#64748b',
+            color: 'var(--text-secondary)',
             fontSize: '13px',
             cursor: 'pointer',
             transition: 'all 0.15s ease',
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.borderColor = '#cbd5e1';
-            e.currentTarget.style.backgroundColor = '#e2e8f0';
+            e.currentTarget.style.borderColor = 'var(--input-border)';
+            e.currentTarget.style.backgroundColor = 'var(--hover-bg)';
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.borderColor = '#e2e8f0';
-            e.currentTarget.style.backgroundColor = '#f1f5f9';
+            e.currentTarget.style.borderColor = 'var(--border-color)';
+            e.currentTarget.style.backgroundColor = 'var(--bg-surface-secondary)';
           }}
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <Search size={16} color="#94a3b8" />
+            <Search size={16} color="var(--text-muted)" />
             <span>Search employees, cases, leaves...</span>
           </div>
           <span
             style={{
               fontSize: '11px',
-              backgroundColor: '#ffffff',
+              backgroundColor: 'var(--bg-surface)',
               padding: '2px 6px',
               borderRadius: '4px',
-              border: '1px solid #cbd5e1',
-              color: '#475569',
+              border: '1px solid var(--border-color)',
+              color: 'var(--text-secondary)',
               fontWeight: 600,
             }}
           >
@@ -116,8 +121,8 @@ export const Header: React.FC = () => {
             display: 'flex',
             alignItems: 'center',
             gap: '12px',
-            backgroundColor: '#f8fafc',
-            border: '1px solid #e2e8f0',
+            backgroundColor: 'var(--bg-surface-secondary)',
+            border: '1px solid var(--border-color)',
             padding: '6px 12px',
             borderRadius: '10px',
           }}
@@ -129,12 +134,12 @@ export const Header: React.FC = () => {
                 width: '8px',
                 height: '8px',
                 borderRadius: '50%',
-                backgroundColor: isPunchedIn ? (isOnBreak ? '#f59e0b' : '#10b981') : '#94a3b8',
+                backgroundColor: isPunchedIn ? (isOnBreak ? '#f59e0b' : '#10b981') : 'var(--text-muted)',
                 boxShadow: isPunchedIn && !isOnBreak ? '0 0 8px #10b981' : 'none',
               }}
             />
             <div>
-              <div style={{ fontSize: '10px', color: '#64748b', fontWeight: 600, textTransform: 'uppercase' }}>
+              <div style={{ fontSize: '10px', color: 'var(--text-muted)', fontWeight: 600, textTransform: 'uppercase' }}>
                 {isPunchedIn ? (isOnBreak ? 'Break Active' : 'Checked In') : 'Checked Out'}
               </div>
               <div
@@ -142,7 +147,7 @@ export const Header: React.FC = () => {
                   fontSize: '13px',
                   fontWeight: 700,
                   fontFamily: 'monospace',
-                  color: isPunchedIn ? '#0f172a' : '#64748b',
+                  color: isPunchedIn ? 'var(--text-primary)' : 'var(--text-muted)',
                 }}
               >
                 {formatTimer(workTimerSeconds)}
@@ -243,10 +248,10 @@ export const Header: React.FC = () => {
                 top: '110%',
                 right: 0,
                 width: '260px',
-                backgroundColor: '#ffffff',
+                backgroundColor: 'var(--bg-surface)',
                 borderRadius: '10px',
-                boxShadow: '0 10px 25px rgba(0,0,0,0.12)',
-                border: '1px solid #e2e8f0',
+                boxShadow: '0 10px 25px rgba(0,0,0,0.2)',
+                border: '1px solid var(--border-color)',
                 padding: '8px',
                 zIndex: 100,
               }}
@@ -361,6 +366,72 @@ export const Header: React.FC = () => {
           )}
         </div>
 
+        {/* Dark / Light Mode Toggle */}
+        <button
+          onClick={toggleTheme}
+          title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+          aria-label={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+            padding: '7px 12px',
+            borderRadius: '10px',
+            border: `1px solid ${theme === 'dark' ? '#334155' : '#e2e8f0'}`,
+            backgroundColor: theme === 'dark' ? '#172033' : '#f8fafc',
+            color: theme === 'dark' ? '#f8fafc' : '#334155',
+            fontSize: '12px',
+            fontWeight: 600,
+            cursor: 'pointer',
+            transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
+            boxShadow: theme === 'dark' ? '0 2px 6px rgba(0,0,0,0.3)' : '0 1px 3px rgba(0,0,0,0.04)',
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.backgroundColor = theme === 'dark' ? '#1e293b' : '#f1f5f9';
+            e.currentTarget.style.borderColor = theme === 'dark' ? '#475569' : '#cbd5e1';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.backgroundColor = theme === 'dark' ? '#172033' : '#f8fafc';
+            e.currentTarget.style.borderColor = theme === 'dark' ? '#334155' : '#e2e8f0';
+          }}
+        >
+          {theme === 'dark' ? (
+            <>
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  width: '20px',
+                  height: '20px',
+                  borderRadius: '50%',
+                  backgroundColor: 'rgba(245, 158, 11, 0.18)',
+                }}
+              >
+                <Sun size={13} color="#fbbf24" />
+              </div>
+              <span style={{ letterSpacing: '0.2px' }}>Light Mode</span>
+            </>
+          ) : (
+            <>
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  width: '20px',
+                  height: '20px',
+                  borderRadius: '50%',
+                  backgroundColor: 'rgba(99, 102, 241, 0.12)',
+                }}
+              >
+                <Moon size={13} color="#4f46e5" />
+              </div>
+              <span style={{ letterSpacing: '0.2px' }}>Dark Mode</span>
+            </>
+          )}
+        </button>
+
         {/* Notifications Bell */}
         <div style={{ position: 'relative' }}>
           <button
@@ -370,13 +441,13 @@ export const Header: React.FC = () => {
               width: '38px',
               height: '38px',
               borderRadius: '8px',
-              border: '1px solid #e2e8f0',
-              backgroundColor: isNotifOpen ? '#f1f5f9' : '#ffffff',
+              border: '1px solid var(--border-color)',
+              backgroundColor: isNotifOpen ? 'var(--hover-bg)' : 'var(--bg-surface)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               cursor: 'pointer',
-              color: '#475569',
+              color: 'var(--text-secondary)',
             }}
           >
             <Bell size={18} />
@@ -396,7 +467,7 @@ export const Header: React.FC = () => {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  border: '2px solid #ffffff',
+                  border: '2px solid var(--bg-surface)',
                 }}
               >
                 {unreadCount}
@@ -412,10 +483,10 @@ export const Header: React.FC = () => {
                 top: '115%',
                 right: 0,
                 width: '320px',
-                backgroundColor: '#ffffff',
+                backgroundColor: 'var(--bg-surface)',
                 borderRadius: '12px',
-                boxShadow: '0 10px 30px rgba(0, 0, 0, 0.15)',
-                border: '1px solid #e2e8f0',
+                boxShadow: '0 10px 30px rgba(0, 0, 0, 0.25)',
+                border: '1px solid var(--border-color)',
                 overflow: 'hidden',
                 zIndex: 100,
               }}
@@ -423,14 +494,14 @@ export const Header: React.FC = () => {
               <div
                 style={{
                   padding: '12px 16px',
-                  borderBottom: '1px solid #f1f5f9',
+                  borderBottom: '1px solid var(--border-subtle)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'space-between',
-                  backgroundColor: '#fafbfc',
+                  backgroundColor: 'var(--bg-surface-secondary)',
                 }}
               >
-                <div style={{ fontSize: '13px', fontWeight: 700, color: '#0f172a' }}>
+                <div style={{ fontSize: '13px', fontWeight: 700, color: 'var(--text-primary)' }}>
                   Notifications ({unreadCount} unread)
                 </div>
                 {unreadCount > 0 && (
@@ -452,7 +523,7 @@ export const Header: React.FC = () => {
 
               <div style={{ maxHeight: '320px', overflowY: 'auto' }}>
                 {notifications.length === 0 ? (
-                  <div style={{ padding: '24px', textAlign: 'center', color: '#94a3b8', fontSize: '12px' }}>
+                  <div style={{ padding: '24px', textAlign: 'center', color: 'var(--text-muted)', fontSize: '12px' }}>
                     No notifications yet.
                   </div>
                 ) : (
@@ -468,18 +539,18 @@ export const Header: React.FC = () => {
                       }}
                       style={{
                         padding: '12px 16px',
-                        borderBottom: '1px solid #f1f5f9',
-                        backgroundColor: notif.read ? '#ffffff' : '#f8faff',
+                        borderBottom: '1px solid var(--border-subtle)',
+                        backgroundColor: notif.read ? 'var(--bg-surface)' : 'var(--bg-surface-secondary)',
                         cursor: 'pointer',
                         display: 'flex',
                         gap: '12px',
                         transition: 'background-color 0.15s ease',
                       }}
                       onMouseEnter={(e) => {
-                        e.currentTarget.style.backgroundColor = '#f1f5f9';
+                        e.currentTarget.style.backgroundColor = 'var(--hover-bg)';
                       }}
                       onMouseLeave={(e) => {
-                        e.currentTarget.style.backgroundColor = notif.read ? '#ffffff' : '#f8faff';
+                        e.currentTarget.style.backgroundColor = notif.read ? 'var(--bg-surface)' : 'var(--bg-surface-secondary)';
                       }}
                     >
                       <div style={{ marginTop: '2px' }}>
@@ -493,16 +564,16 @@ export const Header: React.FC = () => {
                           style={{
                             fontSize: '12px',
                             fontWeight: notif.read ? 600 : 700,
-                            color: '#0f172a',
+                            color: 'var(--text-primary)',
                             marginBottom: '2px',
                           }}
                         >
                           {notif.title}
                         </div>
-                        <div style={{ fontSize: '12px', color: '#64748b', lineHeight: 1.4 }}>
+                        <div style={{ fontSize: '12px', color: 'var(--text-secondary)', lineHeight: 1.4 }}>
                           {notif.message}
                         </div>
-                        <div style={{ fontSize: '10px', color: '#94a3b8', marginTop: '4px' }}>
+                        <div style={{ fontSize: '10px', color: 'var(--text-muted)', marginTop: '4px' }}>
                           {notif.time}
                         </div>
                       </div>

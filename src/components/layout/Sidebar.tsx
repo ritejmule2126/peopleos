@@ -25,6 +25,7 @@ export const Sidebar: React.FC = () => {
     tickets,
     resetDemoData,
     logout,
+    theme,
   } = useApp();
 
   const pendingLeavesCount = leaveRequests.filter((r) => r.status === 'Pending').length;
@@ -46,14 +47,15 @@ export const Sidebar: React.FC = () => {
     <aside
       style={{
         width: '260px',
-        backgroundColor: '#ffffff',
-        color: '#1e293b',
+        backgroundColor: 'var(--sidebar-bg)',
+        color: 'var(--text-primary)',
         display: 'flex',
         flexDirection: 'column',
         height: '100vh',
-        borderRight: '1px solid #e2e8f0',
+        borderRight: '1px solid var(--sidebar-border)',
         flexShrink: 0,
         userSelect: 'none',
+        transition: 'background-color 0.2s ease, border-color 0.2s ease',
       }}
     >
       {/* Brand Header */}
@@ -63,7 +65,7 @@ export const Sidebar: React.FC = () => {
           display: 'flex',
           alignItems: 'center',
           gap: '12px',
-          borderBottom: '1px solid #f1f5f9',
+          borderBottom: '1px solid var(--border-subtle)',
         }}
       >
         <img
@@ -76,13 +78,13 @@ export const Sidebar: React.FC = () => {
             objectFit: 'contain',
             backgroundColor: '#ffffff',
             padding: '2px',
-            border: '1px solid #e2e8f0',
+            border: '1px solid var(--border-color)',
             boxShadow: '0 2px 6px rgba(0, 166, 156, 0.15)',
           }}
         />
         <div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-            <span style={{ fontSize: '16px', fontWeight: 700, letterSpacing: '-0.3px', color: '#0f172a' }}>
+            <span style={{ fontSize: '16px', fontWeight: 700, letterSpacing: '-0.3px', color: 'var(--text-primary)' }}>
               People<span style={{ color: '#0066ff' }}>OS</span>
             </span>
             <span
@@ -90,16 +92,16 @@ export const Sidebar: React.FC = () => {
                 fontSize: '10px',
                 fontWeight: 700,
                 color: '#059669',
-                background: '#ecfdf5',
+                background: theme === 'dark' ? 'rgba(5, 150, 105, 0.2)' : '#ecfdf5',
                 padding: '1px 6px',
                 borderRadius: '4px',
-                border: '1px solid #a7f3d0',
+                border: '1px solid rgba(5, 150, 105, 0.3)',
               }}
             >
               OPEN SOURCE
             </span>
           </div>
-          <div style={{ fontSize: '11px', color: '#64748b', marginTop: '1px' }}>
+          <div style={{ fontSize: '11px', color: 'var(--text-muted)', marginTop: '1px' }}>
             Acuity Solutions
           </div>
         </div>
@@ -136,8 +138,8 @@ export const Sidebar: React.FC = () => {
                     borderRadius: '8px',
                     fontSize: '13px',
                     fontWeight: isActive ? 600 : 500,
-                    color: isActive ? '#0066ff' : '#475569',
-                    backgroundColor: isActive ? '#eff6ff' : 'transparent',
+                    color: isActive ? '#0066ff' : 'var(--text-secondary)',
+                    backgroundColor: isActive ? 'var(--primary-tint)' : 'transparent',
                     border: 'none',
                     cursor: 'pointer',
                     transition: 'all 0.15s ease',
@@ -145,19 +147,19 @@ export const Sidebar: React.FC = () => {
                   }}
                   onMouseEnter={(e) => {
                     if (!isActive) {
-                      e.currentTarget.style.backgroundColor = '#f8fafc';
-                      e.currentTarget.style.color = '#0f172a';
+                      e.currentTarget.style.backgroundColor = 'var(--hover-bg)';
+                      e.currentTarget.style.color = 'var(--text-primary)';
                     }
                   }}
                   onMouseLeave={(e) => {
                     if (!isActive) {
                       e.currentTarget.style.backgroundColor = 'transparent';
-                      e.currentTarget.style.color = '#475569';
+                      e.currentTarget.style.color = 'var(--text-secondary)';
                     }
                   }}
                 >
                   <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                    <Icon size={18} color={isActive ? '#0066ff' : '#64748b'} />
+                    <Icon size={18} color={isActive ? '#0066ff' : 'var(--text-muted)'} />
                     <span>{item.label}</span>
                   </div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
@@ -188,8 +190,8 @@ export const Sidebar: React.FC = () => {
       <div
         style={{
           padding: '16px',
-          borderTop: '1px solid #f1f5f9',
-          backgroundColor: '#f8fafc',
+          borderTop: '1px solid var(--border-subtle)',
+          backgroundColor: 'var(--bg-surface-secondary)',
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '12px' }}>
@@ -201,7 +203,7 @@ export const Sidebar: React.FC = () => {
               height: '36px',
               borderRadius: '50%',
               objectFit: 'cover',
-              border: '2px solid #e2e8f0',
+              border: '2px solid var(--border-color)',
             }}
           />
           <div style={{ overflow: 'hidden', flex: 1 }}>
@@ -209,7 +211,7 @@ export const Sidebar: React.FC = () => {
               style={{
                 fontSize: '13px',
                 fontWeight: 600,
-                color: '#0f172a',
+                color: 'var(--text-primary)',
                 whiteSpace: 'nowrap',
                 overflow: 'hidden',
                 textOverflow: 'ellipsis',
@@ -248,12 +250,12 @@ export const Sidebar: React.FC = () => {
             className="btn btn-ghost btn-sm"
             style={{
               flex: 1,
-              color: '#475569',
+              color: 'var(--text-secondary)',
               fontSize: '11px',
               padding: '6px',
               justifyContent: 'center',
-              backgroundColor: '#ffffff',
-              border: '1px solid #e2e8f0',
+              backgroundColor: 'var(--bg-surface)',
+              border: '1px solid var(--border-color)',
             }}
             title="Reset database to initial demo values"
           >
