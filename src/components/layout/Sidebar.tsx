@@ -46,12 +46,12 @@ export const Sidebar: React.FC = () => {
     <aside
       style={{
         width: '260px',
-        backgroundColor: '#0f172a',
-        color: '#f8fafc',
+        backgroundColor: '#ffffff',
+        color: '#1e293b',
         display: 'flex',
         flexDirection: 'column',
         height: '100vh',
-        borderRight: '1px solid #1e293b',
+        borderRight: '1px solid #e2e8f0',
         flexShrink: 0,
         userSelect: 'none',
       }}
@@ -63,7 +63,7 @@ export const Sidebar: React.FC = () => {
           display: 'flex',
           alignItems: 'center',
           gap: '12px',
-          borderBottom: '1px solid #1e293b',
+          borderBottom: '1px solid #f1f5f9',
         }}
       >
         <img
@@ -76,29 +76,30 @@ export const Sidebar: React.FC = () => {
             objectFit: 'contain',
             backgroundColor: '#ffffff',
             padding: '2px',
-            boxShadow: '0 4px 12px rgba(0, 166, 156, 0.3)',
+            border: '1px solid #e2e8f0',
+            boxShadow: '0 2px 6px rgba(0, 166, 156, 0.15)',
           }}
         />
         <div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-            <span style={{ fontSize: '16px', fontWeight: 700, letterSpacing: '-0.3px', color: '#ffffff' }}>
-              People<span style={{ color: '#60a5fa' }}>OS</span>
+            <span style={{ fontSize: '16px', fontWeight: 700, letterSpacing: '-0.3px', color: '#0f172a' }}>
+              People<span style={{ color: '#0066ff' }}>OS</span>
             </span>
             <span
               style={{
                 fontSize: '10px',
                 fontWeight: 700,
-                color: '#10b981',
-                background: 'rgba(16, 185, 129, 0.15)',
+                color: '#059669',
+                background: '#ecfdf5',
                 padding: '1px 6px',
                 borderRadius: '4px',
-                border: '1px solid rgba(16, 185, 129, 0.3)',
+                border: '1px solid #a7f3d0',
               }}
             >
               OPEN SOURCE
             </span>
           </div>
-          <div style={{ fontSize: '11px', color: '#94a3b8', marginTop: '1px' }}>
+          <div style={{ fontSize: '11px', color: '#64748b', marginTop: '1px' }}>
             Acuity Solutions
           </div>
         </div>
@@ -112,7 +113,7 @@ export const Sidebar: React.FC = () => {
             fontWeight: 600,
             textTransform: 'uppercase',
             letterSpacing: '0.6px',
-            color: '#64748b',
+            color: '#94a3b8',
             padding: '0 12px 10px',
           }}
         >
@@ -135,8 +136,8 @@ export const Sidebar: React.FC = () => {
                     borderRadius: '8px',
                     fontSize: '13px',
                     fontWeight: isActive ? 600 : 500,
-                    color: isActive ? '#ffffff' : '#cbd5e1',
-                    backgroundColor: isActive ? '#1d4ed8' : 'transparent',
+                    color: isActive ? '#0066ff' : '#475569',
+                    backgroundColor: isActive ? '#eff6ff' : 'transparent',
                     border: 'none',
                     cursor: 'pointer',
                     transition: 'all 0.15s ease',
@@ -144,19 +145,19 @@ export const Sidebar: React.FC = () => {
                   }}
                   onMouseEnter={(e) => {
                     if (!isActive) {
-                      e.currentTarget.style.backgroundColor = '#1e293b';
-                      e.currentTarget.style.color = '#ffffff';
+                      e.currentTarget.style.backgroundColor = '#f8fafc';
+                      e.currentTarget.style.color = '#0f172a';
                     }
                   }}
                   onMouseLeave={(e) => {
                     if (!isActive) {
                       e.currentTarget.style.backgroundColor = 'transparent';
-                      e.currentTarget.style.color = '#cbd5e1';
+                      e.currentTarget.style.color = '#475569';
                     }
                   }}
                 >
                   <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                    <Icon size={18} color={isActive ? '#ffffff' : '#94a3b8'} />
+                    <Icon size={18} color={isActive ? '#0066ff' : '#64748b'} />
                     <span>{item.label}</span>
                   </div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
@@ -174,7 +175,7 @@ export const Sidebar: React.FC = () => {
                         {item.badge}
                       </span>
                     ) : null}
-                    {isActive && <ChevronRight size={14} color="#93c5fd" />}
+                    {isActive && <ChevronRight size={14} color="#0066ff" />}
                   </div>
                 </button>
               </li>
@@ -187,8 +188,8 @@ export const Sidebar: React.FC = () => {
       <div
         style={{
           padding: '16px',
-          borderTop: '1px solid #1e293b',
-          backgroundColor: '#090e1a',
+          borderTop: '1px solid #f1f5f9',
+          backgroundColor: '#f8fafc',
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '12px' }}>
@@ -200,7 +201,7 @@ export const Sidebar: React.FC = () => {
               height: '36px',
               borderRadius: '50%',
               objectFit: 'cover',
-              border: '2px solid #3b82f6',
+              border: '2px solid #e2e8f0',
             }}
           />
           <div style={{ overflow: 'hidden', flex: 1 }}>
@@ -208,7 +209,7 @@ export const Sidebar: React.FC = () => {
               style={{
                 fontSize: '13px',
                 fontWeight: 600,
-                color: '#ffffff',
+                color: '#0f172a',
                 whiteSpace: 'nowrap',
                 overflow: 'hidden',
                 textOverflow: 'ellipsis',
@@ -219,7 +220,8 @@ export const Sidebar: React.FC = () => {
             <div
               style={{
                 fontSize: '11px',
-                color: '#60a5fa',
+                color: '#0066ff',
+                fontWeight: 500,
                 whiteSpace: 'nowrap',
                 overflow: 'hidden',
                 textOverflow: 'ellipsis',
@@ -246,11 +248,12 @@ export const Sidebar: React.FC = () => {
             className="btn btn-ghost btn-sm"
             style={{
               flex: 1,
-              color: '#94a3b8',
+              color: '#475569',
               fontSize: '11px',
               padding: '6px',
               justifyContent: 'center',
-              borderColor: '#334155',
+              backgroundColor: '#ffffff',
+              border: '1px solid #e2e8f0',
             }}
             title="Reset database to initial demo values"
           >
@@ -267,11 +270,12 @@ export const Sidebar: React.FC = () => {
             className="btn btn-ghost btn-sm"
             style={{
               flex: 1,
-              color: '#f87171',
+              color: '#dc2626',
               fontSize: '11px',
               padding: '6px',
               justifyContent: 'center',
-              borderColor: '#7f1d1d',
+              backgroundColor: '#fef2f2',
+              border: '1px solid #fecaca',
             }}
             title="Sign out of current workspace"
           >

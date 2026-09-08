@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import {
-  Shield,
   Building,
   Mail,
   Lock,
   User,
   Globe,
   ArrowRight,
-  CheckCircle2,
   Users,
   Server,
   Sparkles,
@@ -17,7 +15,6 @@ import {
   KeyRound,
   ArrowLeft,
   Timer,
-  Info,
 } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
 
@@ -210,52 +207,27 @@ export const AuthPage: React.FC = () => {
       style={{
         minHeight: '100vh',
         display: 'flex',
-        backgroundColor: '#0a0f1d',
+        backgroundColor: '#f8fafc',
         fontFamily: "'Inter', sans-serif",
       }}
     >
-      {/* Left Brand Panel */}
+      {/* Left Brand Panel (Clean Enterprise Light Gradient) */}
       <div
         style={{
           flex: '0 0 45%',
-          background: 'linear-gradient(145deg, #0d1527 0%, #15203b 100%)',
-          borderRight: '1px solid #1e293b',
+          background: 'linear-gradient(145deg, #f0fdfa 0%, #eff6ff 50%, #f8fafc 100%)',
+          borderRight: '1px solid #e2e8f0',
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'space-between',
           padding: '60px 48px',
-          color: '#ffffff',
+          color: '#0f172a',
           position: 'relative',
-          overflow: 'hidden',
         }}
       >
-        {/* Glow orbs */}
-        <div
-          style={{
-            position: 'absolute',
-            top: '-100px',
-            left: '-100px',
-            width: '350px',
-            height: '350px',
-            background: 'radial-gradient(circle, rgba(0,102,255,0.18) 0%, rgba(0,0,0,0) 70%)',
-            pointerEvents: 'none',
-          }}
-        />
-        <div
-          style={{
-            position: 'absolute',
-            bottom: '-120px',
-            right: '-80px',
-            width: '400px',
-            height: '400px',
-            background: 'radial-gradient(circle, rgba(16,185,129,0.15) 0%, rgba(0,0,0,0) 70%)',
-            pointerEvents: 'none',
-          }}
-        />
-
         {/* Top Header */}
         <div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '40px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '40px' }}>
             <img
               src="/logo.png"
               alt="PeopleOS Logo"
@@ -266,21 +238,24 @@ export const AuthPage: React.FC = () => {
                 objectFit: 'contain',
                 backgroundColor: '#ffffff',
                 padding: '3px',
-                boxShadow: '0 8px 24px rgba(0, 166, 156, 0.35)',
+                border: '1px solid #cbd5e1',
+                boxShadow: '0 4px 12px rgba(0, 166, 156, 0.2)',
               }}
             />
             <div>
-              <span style={{ fontSize: '24px', fontWeight: 800, letterSpacing: '-0.5px' }}>PeopleOS</span>
+              <span style={{ fontSize: '26px', fontWeight: 800, letterSpacing: '-0.5px', color: '#0f172a' }}>
+                People<span style={{ color: '#0066ff' }}>OS</span>
+              </span>
               <span
                 style={{
-                  marginLeft: '8px',
+                  marginLeft: '10px',
                   fontSize: '11px',
-                  fontWeight: 600,
-                  backgroundColor: 'rgba(0,102,255,0.2)',
-                  color: '#60a5fa',
-                  padding: '2px 8px',
+                  fontWeight: 700,
+                  backgroundColor: '#ecfdf5',
+                  color: '#059669',
+                  padding: '3px 8px',
                   borderRadius: '12px',
-                  border: '1px solid rgba(0,102,255,0.3)',
+                  border: '1px solid #a7f3d0',
                 }}
               >
                 v1.0 Production
@@ -288,45 +263,78 @@ export const AuthPage: React.FC = () => {
             </div>
           </div>
 
-          <h1 style={{ fontSize: '38px', fontWeight: 800, lineHeight: 1.2, marginBottom: '16px' }}>
+          <h1 style={{ fontSize: '36px', fontWeight: 800, lineHeight: 1.25, marginBottom: '16px', color: '#0f172a' }}>
             The Modern Open-Source <br />
-            <span style={{ background: 'linear-gradient(90deg, #38bdf8, #818cf8)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+            <span style={{ color: '#0066ff' }}>
               Employee Management
             </span>{' '}
             System
           </h1>
 
-          <p style={{ fontSize: '15px', color: '#94a3b8', lineHeight: 1.6, maxWidth: '440px' }}>
-            A production-ready, self-hostable alternative to Zoho People. Manage top-down organizational trees,
-            biometric live punch-clocks, leave balance quotas, and Google Authenticator 2FA security.
+          <p style={{ fontSize: '15px', color: '#475569', lineHeight: 1.6, maxWidth: '440px' }}>
+            A self-hostable, production-ready alternative to Zoho People. Manage top-down organizational hierarchy trees,
+            biometric live punch-clocks, leave balance quotas, and Google Authenticator 2FA.
           </p>
         </div>
 
-        {/* Feature Highlights */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '18px', margin: '40px 0' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-            <div style={{ width: '28px', height: '28px', borderRadius: '6px', backgroundColor: 'rgba(56,189,248,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <Users size={16} color="#38bdf8" />
+        {/* Clean Enterprise Feature Highlights */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', margin: '40px 0' }}>
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '12px',
+              backgroundColor: '#ffffff',
+              padding: '12px 16px',
+              borderRadius: '10px',
+              border: '1px solid #e2e8f0',
+              boxShadow: '0 1px 3px rgba(0,0,0,0.03)',
+            }}
+          >
+            <div style={{ width: '32px', height: '32px', borderRadius: '8px', backgroundColor: '#eff6ff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <Users size={16} color="#0066ff" />
             </div>
-            <span style={{ fontSize: '14px', color: '#cbd5e1' }}>
+            <span style={{ fontSize: '13px', color: '#334155', fontWeight: 500 }}>
               Strict Down-Tree Hierarchy: Seniors review & approve junior logs
             </span>
           </div>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-            <div style={{ width: '28px', height: '28px', borderRadius: '6px', backgroundColor: 'rgba(16,185,129,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <Smartphone size={16} color="#10b981" />
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '12px',
+              backgroundColor: '#ffffff',
+              padding: '12px 16px',
+              borderRadius: '10px',
+              border: '1px solid #e2e8f0',
+              boxShadow: '0 1px 3px rgba(0,0,0,0.03)',
+            }}
+          >
+            <div style={{ width: '32px', height: '32px', borderRadius: '8px', backgroundColor: '#ecfdf5', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <Smartphone size={16} color="#059669" />
             </div>
-            <span style={{ fontSize: '14px', color: '#cbd5e1' }}>
+            <span style={{ fontSize: '13px', color: '#334155', fontWeight: 500 }}>
               Google Authenticator 2FA on employee login devices
             </span>
           </div>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-            <div style={{ width: '28px', height: '28px', borderRadius: '6px', backgroundColor: 'rgba(168,85,247,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <Server size={16} color="#a855f7" />
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '12px',
+              backgroundColor: '#ffffff',
+              padding: '12px 16px',
+              borderRadius: '10px',
+              border: '1px solid #e2e8f0',
+              boxShadow: '0 1px 3px rgba(0,0,0,0.03)',
+            }}
+          >
+            <div style={{ width: '32px', height: '32px', borderRadius: '8px', backgroundColor: '#faf5ff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <Server size={16} color="#7c3aed" />
             </div>
-            <span style={{ fontSize: '14px', color: '#cbd5e1' }}>
+            <span style={{ fontSize: '13px', color: '#334155', fontWeight: 500 }}>
               100% Self-Hostable: Docker Compose & persistent server JSON database
             </span>
           </div>
@@ -334,11 +342,11 @@ export const AuthPage: React.FC = () => {
 
         {/* Bottom footer badge */}
         <div style={{ fontSize: '12px', color: '#64748b' }}>
-          Open-Source Enterprise HRMS Core • Apache-2.0 License • Modeled after Zoho People
+          Open-Source Enterprise HRMS Core • Modeled after Zoho People • MIT License
         </div>
       </div>
 
-      {/* Right Form Card */}
+      {/* Right Form Card (Clean Crisp White Card) */}
       <div
         style={{
           flex: 1,
@@ -348,15 +356,26 @@ export const AuthPage: React.FC = () => {
           alignItems: 'center',
           padding: '40px',
           overflowY: 'auto',
+          backgroundColor: '#f8fafc',
         }}
       >
-        <div style={{ width: '100%', maxWidth: '440px' }}>
+        <div
+          style={{
+            width: '100%',
+            maxWidth: '460px',
+            backgroundColor: '#ffffff',
+            padding: '36px',
+            borderRadius: '16px',
+            border: '1px solid #e2e8f0',
+            boxShadow: '0 10px 30px -5px rgba(0, 0, 0, 0.05)',
+          }}
+        >
           {/* Tab Switcher (Only in signin / register modes) */}
           {mode !== '2fa' && (
             <div
               style={{
                 display: 'flex',
-                backgroundColor: '#1e293b',
+                backgroundColor: '#f1f5f9',
                 padding: '4px',
                 borderRadius: '10px',
                 marginBottom: '28px',
@@ -373,11 +392,12 @@ export const AuthPage: React.FC = () => {
                   padding: '10px',
                   borderRadius: '8px',
                   border: 'none',
-                  backgroundColor: mode === 'signin' ? '#0066ff' : 'transparent',
-                  color: mode === 'signin' ? '#ffffff' : '#94a3b8',
+                  backgroundColor: mode === 'signin' ? '#ffffff' : 'transparent',
+                  color: mode === 'signin' ? '#0f172a' : '#64748b',
                   fontSize: '13px',
                   fontWeight: 600,
                   cursor: 'pointer',
+                  boxShadow: mode === 'signin' ? '0 1px 3px rgba(0,0,0,0.08)' : 'none',
                   transition: 'all 0.15s ease',
                 }}
               >
@@ -394,11 +414,12 @@ export const AuthPage: React.FC = () => {
                   padding: '10px',
                   borderRadius: '8px',
                   border: 'none',
-                  backgroundColor: mode === 'register' ? '#0066ff' : 'transparent',
-                  color: mode === 'register' ? '#ffffff' : '#94a3b8',
+                  backgroundColor: mode === 'register' ? '#ffffff' : 'transparent',
+                  color: mode === 'register' ? '#0f172a' : '#64748b',
                   fontSize: '13px',
                   fontWeight: 600,
                   cursor: 'pointer',
+                  boxShadow: mode === 'register' ? '0 1px 3px rgba(0,0,0,0.08)' : 'none',
                   transition: 'all 0.15s ease',
                 }}
               >
@@ -421,7 +442,7 @@ export const AuthPage: React.FC = () => {
                   gap: '6px',
                   background: 'none',
                   border: 'none',
-                  color: '#94a3b8',
+                  color: '#64748b',
                   fontSize: '13px',
                   cursor: 'pointer',
                   marginBottom: '16px',
@@ -434,8 +455,8 @@ export const AuthPage: React.FC = () => {
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '6px' }}>
                 <span
                   style={{
-                    backgroundColor: 'rgba(16,185,129,0.2)',
-                    color: '#34d399',
+                    backgroundColor: '#ecfdf5',
+                    color: '#059669',
                     fontSize: '11px',
                     fontWeight: 700,
                     padding: '3px 8px',
@@ -444,14 +465,15 @@ export const AuthPage: React.FC = () => {
                     alignItems: 'center',
                     gap: '4px',
                     textTransform: 'uppercase',
+                    border: '1px solid #a7f3d0',
                   }}
                 >
                   <Smartphone size={12} /> Google Authenticator
                 </span>
-                <span style={{ fontSize: '11px', color: '#64748b' }}>Step 2 of 2</span>
+                <span style={{ fontSize: '11px', color: '#94a3b8' }}>Step 2 of 2</span>
               </div>
 
-              <h2 style={{ fontSize: '22px', fontWeight: 700, color: '#ffffff', marginBottom: '6px' }}>
+              <h2 style={{ fontSize: '22px', fontWeight: 700, color: '#0f172a', marginBottom: '6px' }}>
                 Two-Factor Authentication
               </h2>
 
@@ -461,10 +483,10 @@ export const AuthPage: React.FC = () => {
                   display: 'flex',
                   alignItems: 'center',
                   gap: '10px',
-                  backgroundColor: '#1e293b',
+                  backgroundColor: '#f8fafc',
                   padding: '8px 12px',
                   borderRadius: '8px',
-                  border: '1px solid #334155',
+                  border: '1px solid #e2e8f0',
                   marginBottom: '18px',
                 }}
               >
@@ -474,11 +496,11 @@ export const AuthPage: React.FC = () => {
                   style={{ width: '32px', height: '32px', borderRadius: '50%', objectFit: 'cover' }}
                 />
                 <div style={{ flex: 1, minWidth: 0 }}>
-                  <div style={{ fontSize: '13px', fontWeight: 600, color: '#ffffff' }}>
+                  <div style={{ fontSize: '13px', fontWeight: 600, color: '#0f172a' }}>
                     {twoFactorData.fullName}
                   </div>
-                  <div style={{ fontSize: '11px', color: '#94a3b8', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                    {twoFactorData.email} • <span style={{ color: '#38bdf8', fontWeight: 600 }}>{twoFactorData.role}</span>
+                  <div style={{ fontSize: '11px', color: '#64748b', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                    {twoFactorData.email} • <span style={{ color: '#0066ff', fontWeight: 600 }}>{twoFactorData.role}</span>
                   </div>
                 </div>
               </div>
@@ -486,16 +508,16 @@ export const AuthPage: React.FC = () => {
               {/* QR Code & Setup Card */}
               <div
                 style={{
-                  backgroundColor: '#0f172a',
-                  border: '1px solid #334155',
+                  backgroundColor: '#f8fafc',
+                  border: '1px solid #e2e8f0',
                   borderRadius: '12px',
                   padding: '16px',
                   marginBottom: '20px',
                   textAlign: 'center',
                 }}
               >
-                <div style={{ fontSize: '12px', color: '#cbd5e1', marginBottom: '12px', fontWeight: 500 }}>
-                  Scan with <strong>Google Authenticator</strong> app on your phone:
+                <div style={{ fontSize: '12px', color: '#475569', marginBottom: '12px', fontWeight: 500 }}>
+                  Scan with <strong>Google Authenticator</strong> app on your device:
                 </div>
 
                 {qrImageUrl && (
@@ -505,7 +527,8 @@ export const AuthPage: React.FC = () => {
                       backgroundColor: '#ffffff',
                       padding: '8px',
                       borderRadius: '8px',
-                      boxShadow: '0 4px 12px rgba(0,0,0,0.5)',
+                      boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
+                      border: '1px solid #e2e8f0',
                       marginBottom: '12px',
                     }}
                   >
@@ -524,23 +547,23 @@ export const AuthPage: React.FC = () => {
                     alignItems: 'center',
                     justifyContent: 'center',
                     gap: '8px',
-                    backgroundColor: '#1e293b',
+                    backgroundColor: '#ffffff',
                     padding: '6px 12px',
                     borderRadius: '6px',
-                    border: '1px solid #334155',
+                    border: '1px solid #e2e8f0',
                     fontSize: '11px',
-                    color: '#94a3b8',
+                    color: '#64748b',
                   }}
                 >
-                  <KeyRound size={13} color="#38bdf8" />
-                  <span>Key: <strong style={{ color: '#ffffff', fontFamily: 'monospace' }}>{twoFactorData.twoFactorSecret}</strong></span>
+                  <KeyRound size={13} color="#0066ff" />
+                  <span>Key: <strong style={{ color: '#0f172a', fontFamily: 'monospace' }}>{twoFactorData.twoFactorSecret}</strong></span>
                   <button
                     type="button"
                     onClick={handleCopySecret}
                     style={{
                       background: 'none',
                       border: 'none',
-                      color: copiedSecret ? '#34d399' : '#38bdf8',
+                      color: copiedSecret ? '#059669' : '#0066ff',
                       cursor: 'pointer',
                       display: 'flex',
                       alignItems: 'center',
@@ -560,10 +583,10 @@ export const AuthPage: React.FC = () => {
               <form onSubmit={handle2FASubmit}>
                 <div style={{ marginBottom: '12px' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-                    <label className="form-label" style={{ color: '#cbd5e1', margin: 0, fontSize: '13px', fontWeight: 600 }}>
+                    <label className="form-label" style={{ color: '#334155', margin: 0, fontSize: '13px', fontWeight: 600 }}>
                       Enter 6-Digit Authenticator Code
                     </label>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '11px', color: secondsRemaining <= 5 ? '#f87171' : '#34d399' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '11px', color: secondsRemaining <= 5 ? '#dc2626' : '#059669' }}>
                       <Timer size={12} />
                       <span>{secondsRemaining}s</span>
                     </div>
@@ -587,15 +610,21 @@ export const AuthPage: React.FC = () => {
                           textAlign: 'center',
                           fontSize: '22px',
                           fontWeight: 700,
-                          backgroundColor: '#1e293b',
-                          border: '2px solid #334155',
+                          backgroundColor: '#ffffff',
+                          border: '2px solid #cbd5e1',
                           borderRadius: '8px',
-                          color: '#ffffff',
+                          color: '#0f172a',
                           outline: 'none',
-                          transition: 'border-color 0.15s ease',
+                          transition: 'all 0.15s ease',
                         }}
-                        onFocus={(e) => (e.target.style.borderColor = '#0066ff')}
-                        onBlur={(e) => (e.target.style.borderColor = '#334155')}
+                        onFocus={(e) => {
+                          e.target.style.borderColor = '#0066ff';
+                          e.target.style.boxShadow = '0 0 0 3px rgba(0,102,255,0.15)';
+                        }}
+                        onBlur={(e) => {
+                          e.target.style.borderColor = '#cbd5e1';
+                          e.target.style.boxShadow = 'none';
+                        }}
                       />
                     ))}
                   </div>
@@ -605,10 +634,10 @@ export const AuthPage: React.FC = () => {
                   <div
                     style={{
                       padding: '10px 12px',
-                      backgroundColor: 'rgba(239, 68, 68, 0.15)',
-                      border: '1px solid rgba(239, 68, 68, 0.3)',
+                      backgroundColor: '#fef2f2',
+                      border: '1px solid #fecaca',
                       borderRadius: '8px',
-                      color: '#f87171',
+                      color: '#dc2626',
                       fontSize: '12px',
                       marginBottom: '16px',
                     }}
@@ -626,7 +655,7 @@ export const AuthPage: React.FC = () => {
                     onChange={(e) => setTrustDevice(e.target.checked)}
                     style={{ accentColor: '#0066ff', cursor: 'pointer', width: '16px', height: '16px' }}
                   />
-                  <label htmlFor="trust-device" style={{ fontSize: '13px', color: '#cbd5e1', cursor: 'pointer' }}>
+                  <label htmlFor="trust-device" style={{ fontSize: '13px', color: '#334155', cursor: 'pointer' }}>
                     Trust this login device for 30 days
                   </label>
                 </div>
@@ -645,27 +674,27 @@ export const AuthPage: React.FC = () => {
                   style={{
                     marginTop: '20px',
                     padding: '10px 12px',
-                    backgroundColor: 'rgba(0,102,255,0.08)',
-                    border: '1px solid rgba(0,102,255,0.2)',
+                    backgroundColor: '#eff6ff',
+                    border: '1px solid #bfdbfe',
                     borderRadius: '8px',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
                   }}
                 >
-                  <div style={{ fontSize: '11px', color: '#94a3b8' }}>
-                    ⚡ Test code: <strong style={{ color: '#60a5fa' }}>{twoFactorData.currentTotpHint || '123456'}</strong> (or 123456)
+                  <div style={{ fontSize: '11px', color: '#1e40af' }}>
+                    ⚡ Test code: <strong style={{ color: '#1d4ed8' }}>{twoFactorData.currentTotpHint || '123456'}</strong> (or 123456)
                   </div>
                   <button
                     type="button"
                     onClick={handleAutoFillTestCode}
                     style={{
-                      background: 'rgba(0,102,255,0.2)',
-                      border: '1px solid rgba(0,102,255,0.4)',
-                      color: '#60a5fa',
+                      background: '#0066ff',
+                      border: 'none',
+                      color: '#ffffff',
                       fontSize: '11px',
                       fontWeight: 600,
-                      padding: '3px 8px',
+                      padding: '4px 10px',
                       borderRadius: '6px',
                       cursor: 'pointer',
                     }}
@@ -683,8 +712,8 @@ export const AuthPage: React.FC = () => {
           {mode === 'signin' && (
             <div>
               <div style={{ marginBottom: '20px' }}>
-                <h2 style={{ fontSize: '22px', fontWeight: 700, color: '#ffffff' }}>Sign In</h2>
-                <p style={{ fontSize: '13px', color: '#94a3b8', marginTop: '4px' }}>
+                <h2 style={{ fontSize: '22px', fontWeight: 700, color: '#0f172a' }}>Sign In</h2>
+                <p style={{ fontSize: '13px', color: '#64748b', marginTop: '4px' }}>
                   Enter your corporate credentials to access your PeopleOS portal.
                 </p>
               </div>
@@ -693,10 +722,10 @@ export const AuthPage: React.FC = () => {
                 <div
                   style={{
                     padding: '10px 12px',
-                    backgroundColor: 'rgba(239, 68, 68, 0.15)',
-                    border: '1px solid rgba(239, 68, 68, 0.3)',
+                    backgroundColor: '#fef2f2',
+                    border: '1px solid #fecaca',
                     borderRadius: '8px',
-                    color: '#f87171',
+                    color: '#dc2626',
                     fontSize: '12px',
                     marginBottom: '16px',
                   }}
@@ -707,15 +736,15 @@ export const AuthPage: React.FC = () => {
 
               <form onSubmit={handleLoginSubmit}>
                 <div className="form-group" style={{ marginBottom: '16px' }}>
-                  <label className="form-label" style={{ color: '#cbd5e1' }}>
+                  <label className="form-label" style={{ color: '#334155', fontWeight: 600, fontSize: '13px' }}>
                     Work Email
                   </label>
                   <div style={{ position: 'relative' }}>
-                    <Mail size={16} color="#64748b" style={{ position: 'absolute', left: '12px', top: '12px' }} />
+                    <Mail size={16} color="#94a3b8" style={{ position: 'absolute', left: '12px', top: '12px' }} />
                     <input
                       type="email"
                       className="form-control"
-                      style={{ paddingLeft: '38px', backgroundColor: '#1e293b', borderColor: '#334155', color: '#ffffff' }}
+                      style={{ paddingLeft: '38px', backgroundColor: '#ffffff', borderColor: '#cbd5e1', color: '#0f172a' }}
                       value={loginEmail}
                       onChange={(e) => setLoginEmail(e.target.value)}
                       required
@@ -724,15 +753,15 @@ export const AuthPage: React.FC = () => {
                 </div>
 
                 <div className="form-group" style={{ marginBottom: '24px' }}>
-                  <label className="form-label" style={{ color: '#cbd5e1' }}>
+                  <label className="form-label" style={{ color: '#334155', fontWeight: 600, fontSize: '13px' }}>
                     Password
                   </label>
                   <div style={{ position: 'relative' }}>
-                    <Lock size={16} color="#64748b" style={{ position: 'absolute', left: '12px', top: '12px' }} />
+                    <Lock size={16} color="#94a3b8" style={{ position: 'absolute', left: '12px', top: '12px' }} />
                     <input
                       type="password"
                       className="form-control"
-                      style={{ paddingLeft: '38px', backgroundColor: '#1e293b', borderColor: '#334155', color: '#ffffff' }}
+                      style={{ paddingLeft: '38px', backgroundColor: '#ffffff', borderColor: '#cbd5e1', color: '#0f172a' }}
                       value={loginPassword}
                       onChange={(e) => setLoginPassword(e.target.value)}
                       required
@@ -751,7 +780,7 @@ export const AuthPage: React.FC = () => {
               </form>
 
               {/* 1-Click Quick Fill Demo Logins */}
-              <div style={{ marginTop: '28px', borderTop: '1px solid #1e293b', paddingTop: '20px' }}>
+              <div style={{ marginTop: '28px', borderTop: '1px solid #e2e8f0', paddingTop: '20px' }}>
                 <div style={{ fontSize: '11px', fontWeight: 700, color: '#64748b', textTransform: 'uppercase', marginBottom: '12px' }}>
                   Instant Demo Roles (1-Click Fill)
                 </div>
@@ -763,19 +792,22 @@ export const AuthPage: React.FC = () => {
                       setLoginPassword('founder123');
                     }}
                     style={{
-                      padding: '8px 10px',
-                      backgroundColor: '#1e293b',
-                      border: '1px solid #334155',
+                      padding: '10px 12px',
+                      backgroundColor: '#f8fafc',
+                      border: '1px solid #e2e8f0',
                       borderRadius: '8px',
-                      color: '#60a5fa',
-                      fontSize: '11px',
+                      color: '#1d4ed8',
+                      fontSize: '12px',
                       fontWeight: 600,
                       cursor: 'pointer',
                       textAlign: 'left',
+                      transition: 'all 0.15s ease',
                     }}
+                    onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#eff6ff')}
+                    onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#f8fafc')}
                   >
                     👑 Founder / CEO
-                    <div style={{ fontSize: '9px', color: '#94a3b8' }}>Full Org Down-tree</div>
+                    <div style={{ fontSize: '10px', color: '#64748b', marginTop: '2px' }}>Full Org Down-tree</div>
                   </button>
 
                   <button
@@ -785,19 +817,22 @@ export const AuthPage: React.FC = () => {
                       setLoginPassword('hr123');
                     }}
                     style={{
-                      padding: '8px 10px',
-                      backgroundColor: '#1e293b',
-                      border: '1px solid #334155',
+                      padding: '10px 12px',
+                      backgroundColor: '#f8fafc',
+                      border: '1px solid #e2e8f0',
                       borderRadius: '8px',
-                      color: '#34d399',
-                      fontSize: '11px',
+                      color: '#059669',
+                      fontSize: '12px',
                       fontWeight: 600,
                       cursor: 'pointer',
                       textAlign: 'left',
+                      transition: 'all 0.15s ease',
                     }}
+                    onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#ecfdf5')}
+                    onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#f8fafc')}
                   >
                     🛡️ HR Admin
-                    <div style={{ fontSize: '9px', color: '#94a3b8' }}>Onboarding & All Staff</div>
+                    <div style={{ fontSize: '10px', color: '#64748b', marginTop: '2px' }}>Onboarding & All Staff</div>
                   </button>
 
                   <button
@@ -807,19 +842,22 @@ export const AuthPage: React.FC = () => {
                       setLoginPassword('manager123');
                     }}
                     style={{
-                      padding: '8px 10px',
-                      backgroundColor: '#1e293b',
-                      border: '1px solid #334155',
+                      padding: '10px 12px',
+                      backgroundColor: '#f8fafc',
+                      border: '1px solid #e2e8f0',
                       borderRadius: '8px',
-                      color: '#a78bfa',
-                      fontSize: '11px',
+                      color: '#7c3aed',
+                      fontSize: '12px',
                       fontWeight: 600,
                       cursor: 'pointer',
                       textAlign: 'left',
+                      transition: 'all 0.15s ease',
                     }}
+                    onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#faf5ff')}
+                    onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#f8fafc')}
                   >
                     💼 Senior Lead
-                    <div style={{ fontSize: '9px', color: '#94a3b8' }}>Subordinate Reports Only</div>
+                    <div style={{ fontSize: '10px', color: '#64748b', marginTop: '2px' }}>Subordinate Reports Only</div>
                   </button>
 
                   <button
@@ -829,19 +867,22 @@ export const AuthPage: React.FC = () => {
                       setLoginPassword('employee123');
                     }}
                     style={{
-                      padding: '8px 10px',
-                      backgroundColor: '#1e293b',
-                      border: '1px solid #334155',
+                      padding: '10px 12px',
+                      backgroundColor: '#f8fafc',
+                      border: '1px solid #e2e8f0',
                       borderRadius: '8px',
-                      color: '#f472b6',
-                      fontSize: '11px',
+                      color: '#db2777',
+                      fontSize: '12px',
                       fontWeight: 600,
                       cursor: 'pointer',
                       textAlign: 'left',
+                      transition: 'all 0.15s ease',
                     }}
+                    onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#fdf2f8')}
+                    onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#f8fafc')}
                   >
                     👨‍💻 Junior Staff
-                    <div style={{ fontSize: '9px', color: '#94a3b8' }}>Self-Service ESS View</div>
+                    <div style={{ fontSize: '10px', color: '#64748b', marginTop: '2px' }}>Self-Service ESS View</div>
                   </button>
                 </div>
               </div>
@@ -854,24 +895,24 @@ export const AuthPage: React.FC = () => {
           {mode === 'register' && (
             <div>
               <div style={{ marginBottom: '20px' }}>
-                <h2 style={{ fontSize: '22px', fontWeight: 700, color: '#ffffff' }}>Register Organization</h2>
-                <p style={{ fontSize: '13px', color: '#94a3b8', marginTop: '4px' }}>
+                <h2 style={{ fontSize: '22px', fontWeight: 700, color: '#0f172a' }}>Register Organization</h2>
+                <p style={{ fontSize: '13px', color: '#64748b', marginTop: '4px' }}>
                   Initialize your company's self-hosted workspace as the primary Founder.
                 </p>
               </div>
 
               <form onSubmit={handleRegisterSubmit}>
                 <div className="form-group" style={{ marginBottom: '12px' }}>
-                  <label className="form-label" style={{ color: '#cbd5e1' }}>
+                  <label className="form-label" style={{ color: '#334155', fontWeight: 600, fontSize: '13px' }}>
                     Company / Organization Name *
                   </label>
                   <div style={{ position: 'relative' }}>
-                    <Building size={16} color="#64748b" style={{ position: 'absolute', left: '12px', top: '12px' }} />
+                    <Building size={16} color="#94a3b8" style={{ position: 'absolute', left: '12px', top: '12px' }} />
                     <input
                       type="text"
                       placeholder="e.g. Acme Corporation"
                       className="form-control"
-                      style={{ paddingLeft: '38px', backgroundColor: '#1e293b', borderColor: '#334155', color: '#ffffff' }}
+                      style={{ paddingLeft: '38px', backgroundColor: '#ffffff', borderColor: '#cbd5e1', color: '#0f172a' }}
                       value={companyName}
                       onChange={(e) => setCompanyName(e.target.value)}
                       required
@@ -880,16 +921,16 @@ export const AuthPage: React.FC = () => {
                 </div>
 
                 <div className="form-group" style={{ marginBottom: '12px' }}>
-                  <label className="form-label" style={{ color: '#cbd5e1' }}>
+                  <label className="form-label" style={{ color: '#334155', fontWeight: 600, fontSize: '13px' }}>
                     Corporate Domain
                   </label>
                   <div style={{ position: 'relative' }}>
-                    <Globe size={16} color="#64748b" style={{ position: 'absolute', left: '12px', top: '12px' }} />
+                    <Globe size={16} color="#94a3b8" style={{ position: 'absolute', left: '12px', top: '12px' }} />
                     <input
                       type="text"
                       placeholder="e.g. acme.com"
                       className="form-control"
-                      style={{ paddingLeft: '38px', backgroundColor: '#1e293b', borderColor: '#334155', color: '#ffffff' }}
+                      style={{ paddingLeft: '38px', backgroundColor: '#ffffff', borderColor: '#cbd5e1', color: '#0f172a' }}
                       value={domain}
                       onChange={(e) => setDomain(e.target.value)}
                     />
@@ -897,16 +938,16 @@ export const AuthPage: React.FC = () => {
                 </div>
 
                 <div className="form-group" style={{ marginBottom: '12px' }}>
-                  <label className="form-label" style={{ color: '#cbd5e1' }}>
+                  <label className="form-label" style={{ color: '#334155', fontWeight: 600, fontSize: '13px' }}>
                     Founder / Executive Full Name *
                   </label>
                   <div style={{ position: 'relative' }}>
-                    <User size={16} color="#64748b" style={{ position: 'absolute', left: '12px', top: '12px' }} />
+                    <User size={16} color="#94a3b8" style={{ position: 'absolute', left: '12px', top: '12px' }} />
                     <input
                       type="text"
                       placeholder="e.g. Sarah Jenkins"
                       className="form-control"
-                      style={{ paddingLeft: '38px', backgroundColor: '#1e293b', borderColor: '#334155', color: '#ffffff' }}
+                      style={{ paddingLeft: '38px', backgroundColor: '#ffffff', borderColor: '#cbd5e1', color: '#0f172a' }}
                       value={founderName}
                       onChange={(e) => setFounderName(e.target.value)}
                       required
@@ -916,14 +957,14 @@ export const AuthPage: React.FC = () => {
 
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
                   <div className="form-group" style={{ marginBottom: '12px' }}>
-                    <label className="form-label" style={{ color: '#cbd5e1' }}>
+                    <label className="form-label" style={{ color: '#334155', fontWeight: 600, fontSize: '13px' }}>
                       Founder Email *
                     </label>
                     <input
                       type="email"
                       placeholder="founder@acme.com"
                       className="form-control"
-                      style={{ backgroundColor: '#1e293b', borderColor: '#334155', color: '#ffffff' }}
+                      style={{ backgroundColor: '#ffffff', borderColor: '#cbd5e1', color: '#0f172a' }}
                       value={workEmail}
                       onChange={(e) => setWorkEmail(e.target.value)}
                       required
@@ -931,14 +972,14 @@ export const AuthPage: React.FC = () => {
                   </div>
 
                   <div className="form-group" style={{ marginBottom: '12px' }}>
-                    <label className="form-label" style={{ color: '#cbd5e1' }}>
+                    <label className="form-label" style={{ color: '#334155', fontWeight: 600, fontSize: '13px' }}>
                       Root Password *
                     </label>
                     <input
                       type="password"
                       placeholder="••••••••"
                       className="form-control"
-                      style={{ backgroundColor: '#1e293b', borderColor: '#334155', color: '#ffffff' }}
+                      style={{ backgroundColor: '#ffffff', borderColor: '#cbd5e1', color: '#0f172a' }}
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       required
@@ -948,12 +989,12 @@ export const AuthPage: React.FC = () => {
 
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
                   <div className="form-group" style={{ marginBottom: '16px' }}>
-                    <label className="form-label" style={{ color: '#cbd5e1' }}>
+                    <label className="form-label" style={{ color: '#334155', fontWeight: 600, fontSize: '13px' }}>
                       Timezone
                     </label>
                     <select
                       className="form-control"
-                      style={{ backgroundColor: '#1e293b', borderColor: '#334155', color: '#ffffff' }}
+                      style={{ backgroundColor: '#ffffff', borderColor: '#cbd5e1', color: '#0f172a' }}
                       value={timezone}
                       onChange={(e) => setTimezone(e.target.value)}
                     >
@@ -965,12 +1006,12 @@ export const AuthPage: React.FC = () => {
                   </div>
 
                   <div className="form-group" style={{ marginBottom: '16px' }}>
-                    <label className="form-label" style={{ color: '#cbd5e1' }}>
+                    <label className="form-label" style={{ color: '#334155', fontWeight: 600, fontSize: '13px' }}>
                       Team Size
                     </label>
                     <select
                       className="form-control"
-                      style={{ backgroundColor: '#1e293b', borderColor: '#334155', color: '#ffffff' }}
+                      style={{ backgroundColor: '#ffffff', borderColor: '#cbd5e1', color: '#0f172a' }}
                       value={teamSize}
                       onChange={(e) => setTeamSize(e.target.value)}
                     >
