@@ -1,0 +1,664 @@
+{
+  "organization": {
+    "name": "Techpaylogic Technologies Pvt. Ltd.",
+    "domain": "paylogic.in",
+    "timezone": "America/Los_Angeles (PST - UTC-8)",
+    "established": "2026-09-08"
+  },
+  "accounts": [
+    {
+      "id": "acc-root-1788867082522",
+      "employeeId": "emp-root-1788867082522",
+      "email": "arjun.kumar@paylogic.in",
+      "passwordHash": "Paylogic26@",
+      "role": "FOUNDER",
+      "fullName": "Arjun Kumar",
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80",
+      "companyName": "Techpaylogic Technologies Pvt. Ltd.",
+      "twoFactorEnabled": true,
+      "twoFactorSecret": "JBSWY3DPEHPK3PXP"
+    },
+    {
+      "id": "acc-1",
+      "employeeId": "emp-1",
+      "email": "founder@peopleos.dev",
+      "passwordHash": "founder123",
+      "role": "FOUNDER",
+      "fullName": "Sarah Jenkins",
+      "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&auto=format&fit=crop&q=80",
+      "companyName": "Acuity Solutions Inc.",
+      "twoFactorEnabled": true,
+      "twoFactorSecret": "JBSWY3DPEHPK3PXP",
+      "trustedDevices": [
+        "dev_acc-1_1788867385383",
+        "dev_acc-1_1788867828968"
+      ]
+    },
+    {
+      "id": "acc-2",
+      "employeeId": "emp-11",
+      "email": "hr@peopleos.dev",
+      "passwordHash": "hr123",
+      "role": "HR_ADMIN",
+      "fullName": "Jordan Taylor",
+      "avatar": "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=150&auto=format&fit=crop&q=80",
+      "companyName": "Acuity Solutions Inc.",
+      "twoFactorEnabled": true,
+      "twoFactorSecret": "HXDMVJECJJWSRZ3U"
+    },
+    {
+      "id": "acc-3",
+      "employeeId": "emp-2",
+      "email": "manager@peopleos.dev",
+      "passwordHash": "manager123",
+      "role": "MANAGER",
+      "fullName": "Alex Rivera",
+      "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80",
+      "companyName": "Acuity Solutions Inc.",
+      "twoFactorEnabled": true,
+      "twoFactorSecret": "GEZDGNBVGY3TQOJQ"
+    },
+    {
+      "id": "acc-4",
+      "employeeId": "emp-7",
+      "email": "employee@peopleos.dev",
+      "passwordHash": "employee123",
+      "role": "EMPLOYEE",
+      "fullName": "Rohan Deshmukh",
+      "avatar": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=150&auto=format&fit=crop&q=80",
+      "companyName": "Acuity Solutions Inc.",
+      "twoFactorEnabled": true,
+      "twoFactorSecret": "MFRGGZDFMY2TMOBX",
+      "trustedDevices": [
+        "dev_acc-4_1788867670578"
+      ]
+    }
+  ],
+  "employees": [
+    {
+      "id": "emp-root-1788867082522",
+      "employeeId": "POS-1001",
+      "firstName": "Arjun",
+      "lastName": "Kumar",
+      "email": "arjun.kumar@paylogic.in",
+      "phone": "+1 (555) 100-0001",
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80",
+      "department": "Executive Leadership",
+      "designation": "CEO & Founder (Company Root)",
+      "managerId": null,
+      "managerName": null,
+      "role": "FOUNDER",
+      "dateOfJoining": "2026-09-08",
+      "workLocation": "Company Headquarters",
+      "employmentType": "Full Time",
+      "status": "Active",
+      "salary": 220000,
+      "skills": [
+        "Leadership",
+        "Strategic Planning",
+        "Product Vision"
+      ],
+      "bio": "Founder & Executive Leader at Techpaylogic Technologies Pvt. Ltd.. Self-hosted instance root."
+    },
+    {
+      "id": "emp-1",
+      "employeeId": "POS-1001",
+      "firstName": "Sarah",
+      "lastName": "Jenkins",
+      "email": "sarah.jenkins@acuity.io",
+      "phone": "+1 (555) 234-5671",
+      "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&auto=format&fit=crop&q=80",
+      "department": "Executive Leadership",
+      "designation": "CEO & Founder (Company Root)",
+      "managerId": null,
+      "managerName": null,
+      "role": "FOUNDER",
+      "dateOfJoining": "2021-03-15",
+      "workLocation": "San Francisco HQ",
+      "employmentType": "Full Time",
+      "status": "Active",
+      "salary": 210000,
+      "skills": [
+        "Leadership",
+        "Strategic Planning",
+        "People Analytics",
+        "Executive Direction"
+      ],
+      "bio": "Founder and Chief Executive Officer guiding company trajectory and workplace culture.",
+      "address": {
+        "city": "San Francisco",
+        "state": "CA",
+        "country": "United States"
+      },
+      "emergencyContact": {
+        "name": "Mark Jenkins",
+        "relation": "Spouse",
+        "phone": "+1 (555) 998-1200"
+      }
+    },
+    {
+      "id": "emp-2",
+      "employeeId": "POS-1002",
+      "firstName": "Alex",
+      "lastName": "Rivera",
+      "email": "alex.rivera@acuity.io",
+      "phone": "+1 (555) 345-6782",
+      "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80",
+      "department": "Engineering",
+      "designation": "VP of Engineering (Manager)",
+      "managerId": "emp-1",
+      "managerName": "Sarah Jenkins",
+      "role": "MANAGER",
+      "dateOfJoining": "2021-07-01",
+      "workLocation": "San Francisco HQ",
+      "employmentType": "Full Time",
+      "status": "Active",
+      "salary": 195000,
+      "skills": [
+        "Architecture",
+        "Kubernetes",
+        "TypeScript",
+        "Distributed Systems"
+      ],
+      "bio": "Leading engineering development velocity and technical standards."
+    },
+    {
+      "id": "emp-11",
+      "employeeId": "POS-1003",
+      "firstName": "Jordan",
+      "lastName": "Taylor",
+      "email": "jordan.taylor@acuity.io",
+      "phone": "+1 (555) 234-5670",
+      "avatar": "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=150&auto=format&fit=crop&q=80",
+      "department": "Human Resources",
+      "designation": "Head of People & HR Operations",
+      "managerId": "emp-1",
+      "managerName": "Sarah Jenkins",
+      "role": "HR_ADMIN",
+      "dateOfJoining": "2021-09-15",
+      "workLocation": "San Francisco HQ",
+      "employmentType": "Full Time",
+      "status": "Active",
+      "salary": 135000,
+      "skills": [
+        "People Operations",
+        "Compliance",
+        "Talent Acquisition",
+        "Benefits"
+      ]
+    },
+    {
+      "id": "emp-3",
+      "employeeId": "POS-1004",
+      "firstName": "Elena",
+      "lastName": "Rostova",
+      "email": "elena.rostova@acuity.io",
+      "phone": "+1 (555) 456-7893",
+      "avatar": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&auto=format&fit=crop&q=80",
+      "department": "Product & Design",
+      "designation": "Head of Product",
+      "managerId": "emp-1",
+      "managerName": "Sarah Jenkins",
+      "role": "MANAGER",
+      "dateOfJoining": "2022-01-10",
+      "workLocation": "New York Hub",
+      "employmentType": "Full Time",
+      "status": "Active",
+      "salary": 175000,
+      "skills": [
+        "Product Roadmapping",
+        "UX Research",
+        "Design Systems"
+      ]
+    },
+    {
+      "id": "emp-7",
+      "employeeId": "POS-1007",
+      "firstName": "Rohan",
+      "lastName": "Deshmukh",
+      "email": "rohan.deshmukh@acuity.io",
+      "phone": "+1 (555) 890-1237",
+      "avatar": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=150&auto=format&fit=crop&q=80",
+      "department": "Engineering",
+      "designation": "Senior Full Stack Engineer",
+      "managerId": "emp-2",
+      "managerName": "Alex Rivera",
+      "role": "EMPLOYEE",
+      "dateOfJoining": "2022-06-01",
+      "workLocation": "Remote - India Hub",
+      "employmentType": "Full Time",
+      "status": "Active",
+      "salary": 125000,
+      "skills": [
+        "React",
+        "Node.js",
+        "PostgreSQL",
+        "GraphQL"
+      ]
+    },
+    {
+      "id": "emp-8",
+      "employeeId": "POS-1008",
+      "firstName": "Aaliyah",
+      "lastName": "Patel",
+      "email": "aaliyah.patel@acuity.io",
+      "phone": "+1 (555) 901-2348",
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80",
+      "department": "Engineering",
+      "designation": "Frontend Lead Engineer",
+      "managerId": "emp-2",
+      "managerName": "Alex Rivera",
+      "role": "EMPLOYEE",
+      "dateOfJoining": "2023-01-09",
+      "workLocation": "San Francisco HQ",
+      "employmentType": "Full Time",
+      "status": "Active",
+      "salary": 140000,
+      "skills": [
+        "React",
+        "TypeScript",
+        "Web Accessibility"
+      ]
+    },
+    {
+      "id": "emp-13",
+      "employeeId": "POS-1013",
+      "firstName": "Daniel",
+      "lastName": "Kim",
+      "email": "daniel.kim@acuity.io",
+      "phone": "+1 (555) 456-7892",
+      "avatar": "https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?w=150&auto=format&fit=crop&q=80",
+      "department": "Engineering",
+      "designation": "QA Automation Engineer",
+      "managerId": "emp-2",
+      "managerName": "Alex Rivera",
+      "role": "EMPLOYEE",
+      "dateOfJoining": "2024-01-10",
+      "workLocation": "Remote - US",
+      "employmentType": "Full Time",
+      "status": "Probation",
+      "salary": 95000,
+      "skills": [
+        "Cypress",
+        "Playwright",
+        "Jest"
+      ]
+    },
+    {
+      "id": "emp-10",
+      "employeeId": "POS-1010",
+      "firstName": "Mei",
+      "lastName": "Lin",
+      "email": "mei.lin@acuity.io",
+      "phone": "+1 (555) 123-4560",
+      "avatar": "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=150&auto=format&fit=crop&q=80",
+      "department": "Product & Design",
+      "designation": "Senior Product Designer",
+      "managerId": "emp-3",
+      "managerName": "Elena Rostova",
+      "role": "EMPLOYEE",
+      "dateOfJoining": "2023-03-20",
+      "workLocation": "San Francisco HQ",
+      "employmentType": "Full Time",
+      "status": "On Leave",
+      "salary": 130000,
+      "skills": [
+        "Figma",
+        "Prototyping",
+        "Design Systems"
+      ]
+    }
+  ],
+  "departments": [
+    {
+      "id": "dept-1",
+      "name": "Executive Leadership",
+      "code": "EXEC",
+      "leadId": "emp-1",
+      "leadName": "Sarah Jenkins",
+      "description": "Executive team."
+    },
+    {
+      "id": "dept-2",
+      "name": "Engineering",
+      "code": "ENG",
+      "leadId": "emp-2",
+      "leadName": "Alex Rivera",
+      "description": "Core software engineering."
+    },
+    {
+      "id": "dept-3",
+      "name": "Product & Design",
+      "code": "PROD",
+      "leadId": "emp-3",
+      "leadName": "Elena Rostova",
+      "description": "Product roadmap & design."
+    },
+    {
+      "id": "dept-4",
+      "name": "Human Resources",
+      "code": "HR",
+      "leadId": "emp-11",
+      "leadName": "Jordan Taylor",
+      "description": "People operations & recruiting."
+    }
+  ],
+  "attendance": [
+    {
+      "id": "att-1788867108626",
+      "employeeId": "emp-root-1788867082522",
+      "date": "2026-09-08",
+      "checkIn": "05:01 PM",
+      "checkOut": "05:01 PM",
+      "totalHours": 6.9,
+      "breakMinutes": 0,
+      "status": "Present"
+    },
+    {
+      "id": "att-1",
+      "employeeId": "emp-1",
+      "date": "2026-09-08",
+      "checkIn": "08:50 AM",
+      "checkOut": null,
+      "totalHours": 7.5,
+      "breakMinutes": 30,
+      "status": "Present"
+    },
+    {
+      "id": "att-2",
+      "employeeId": "emp-2",
+      "date": "2026-09-08",
+      "checkIn": "09:00 AM",
+      "checkOut": null,
+      "totalHours": 7.3,
+      "breakMinutes": 45,
+      "status": "Present"
+    },
+    {
+      "id": "att-3",
+      "employeeId": "emp-7",
+      "date": "2026-09-08",
+      "checkIn": "09:15 AM",
+      "checkOut": null,
+      "totalHours": 7.1,
+      "breakMinutes": 30,
+      "status": "Present"
+    },
+    {
+      "id": "att-4",
+      "employeeId": "emp-8",
+      "date": "2026-09-08",
+      "checkIn": "08:58 AM",
+      "checkOut": null,
+      "totalHours": 7.4,
+      "breakMinutes": 20,
+      "status": "Present"
+    },
+    {
+      "id": "att-5",
+      "employeeId": "emp-10",
+      "date": "2026-09-08",
+      "checkIn": null,
+      "checkOut": null,
+      "totalHours": 0,
+      "breakMinutes": 0,
+      "status": "On Leave"
+    }
+  ],
+  "leaveBalances": {
+    "emp-1": {
+      "CL": {
+        "total": 12,
+        "used": 1,
+        "remaining": 11
+      },
+      "SL": {
+        "total": 10,
+        "used": 0,
+        "remaining": 10
+      },
+      "PL": {
+        "total": 15,
+        "used": 2,
+        "remaining": 13
+      },
+      "ML": {
+        "total": 90,
+        "used": 0,
+        "remaining": 90
+      },
+      "UL": {
+        "total": 30,
+        "used": 0,
+        "remaining": 30
+      }
+    },
+    "emp-2": {
+      "CL": {
+        "total": 12,
+        "used": 2,
+        "remaining": 10
+      },
+      "SL": {
+        "total": 10,
+        "used": 1,
+        "remaining": 9
+      },
+      "PL": {
+        "total": 15,
+        "used": 3,
+        "remaining": 12
+      },
+      "ML": {
+        "total": 14,
+        "used": 0,
+        "remaining": 14
+      },
+      "UL": {
+        "total": 30,
+        "used": 0,
+        "remaining": 30
+      }
+    },
+    "emp-7": {
+      "CL": {
+        "total": 12,
+        "used": 5,
+        "remaining": 7
+      },
+      "SL": {
+        "total": 10,
+        "used": 2,
+        "remaining": 8
+      },
+      "PL": {
+        "total": 15,
+        "used": 5,
+        "remaining": 10
+      },
+      "ML": {
+        "total": 14,
+        "used": 0,
+        "remaining": 14
+      },
+      "UL": {
+        "total": 30,
+        "used": 0,
+        "remaining": 30
+      }
+    },
+    "emp-8": {
+      "CL": {
+        "total": 12,
+        "used": 1,
+        "remaining": 11
+      },
+      "SL": {
+        "total": 10,
+        "used": 1,
+        "remaining": 9
+      },
+      "PL": {
+        "total": 15,
+        "used": 2,
+        "remaining": 13
+      },
+      "ML": {
+        "total": 14,
+        "used": 0,
+        "remaining": 14
+      },
+      "UL": {
+        "total": 30,
+        "used": 0,
+        "remaining": 30
+      }
+    }
+  },
+  "leaveRequests": [
+    {
+      "employeeId": "emp-7",
+      "employeeName": "Rohan Deshmukh",
+      "leaveType": "CL",
+      "startDate": "2026-09-15",
+      "endDate": "2026-09-16",
+      "days": 2,
+      "reason": "Family function",
+      "id": "lr-1788866945226",
+      "status": "Approved",
+      "appliedOn": "2026-09-08",
+      "approverComments": "Approved by Manager"
+    },
+    {
+      "id": "lr-1",
+      "employeeId": "emp-7",
+      "employeeName": "Rohan Deshmukh",
+      "department": "Engineering",
+      "leaveType": "CL",
+      "fromDate": "2026-09-15",
+      "toDate": "2026-09-16",
+      "days": 2,
+      "isHalfDay": false,
+      "reason": "Family celebration in hometown.",
+      "status": "Pending",
+      "appliedOn": "2026-09-06",
+      "approverId": "emp-2",
+      "approverName": "Alex Rivera"
+    },
+    {
+      "id": "lr-2",
+      "employeeId": "emp-10",
+      "employeeName": "Mei Lin",
+      "department": "Product & Design",
+      "leaveType": "PL",
+      "fromDate": "2026-09-08",
+      "toDate": "2026-09-12",
+      "days": 5,
+      "isHalfDay": false,
+      "reason": "Annual travel vacation.",
+      "status": "Approved",
+      "appliedOn": "2026-09-01",
+      "approverId": "emp-3",
+      "approverName": "Elena Rostova",
+      "approverComments": "Approved by Product Lead."
+    }
+  ],
+  "goals": [
+    {
+      "id": "g-1",
+      "employeeId": "emp-7",
+      "title": "Migrate Core Services to Microservices Architecture",
+      "category": "Strategic",
+      "description": "Decompose monolithic modules into independent services.",
+      "progress": 75,
+      "targetDate": "2026-10-30",
+      "status": "In Progress",
+      "weightage": 40
+    },
+    {
+      "id": "g-2",
+      "employeeId": "emp-2",
+      "title": "Engineering Q3 SLA: 99.95% System Uptime",
+      "category": "Strategic",
+      "description": "Ensure 99.95% availability across production APIs.",
+      "progress": 98,
+      "targetDate": "2026-09-30",
+      "status": "In Progress",
+      "weightage": 50
+    }
+  ],
+  "kudos": [
+    {
+      "id": "k-1",
+      "fromEmployeeId": "emp-2",
+      "fromEmployeeName": "Alex Rivera",
+      "fromAvatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80",
+      "toEmployeeId": "emp-7",
+      "toEmployeeName": "Rohan Deshmukh",
+      "toAvatar": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=150&auto=format&fit=crop&q=80",
+      "badge": "Problem Solver",
+      "message": "Diagnosed and fixed the race condition issue before major deployment.",
+      "timestamp": "2 hours ago",
+      "likes": 6,
+      "likedBy": [
+        "emp-1",
+        "emp-2"
+      ]
+    }
+  ],
+  "tickets": [
+    {
+      "id": "t-1",
+      "ticketNumber": "POS-CASE-1041",
+      "employeeId": "emp-7",
+      "employeeName": "Rohan Deshmukh",
+      "department": "Engineering",
+      "category": "IT & Equipment",
+      "subject": "Request for secondary 4K display for developer workstation",
+      "description": "Submitting requisition under standard hybrid workspace setup.",
+      "priority": "Medium",
+      "status": "In Progress",
+      "createdAt": "2026-09-05 10:15 AM",
+      "assignedToName": "Jordan Taylor (HR)",
+      "messages": [
+        {
+          "id": "msg-1",
+          "senderId": "emp-7",
+          "senderName": "Rohan Deshmukh",
+          "senderRole": "EMPLOYEE",
+          "message": "Hi IT/HR, please review requisition for 4K external display.",
+          "timestamp": "2026-09-05 10:15 AM"
+        }
+      ]
+    }
+  ],
+  "onboardingTasks": [
+    {
+      "id": "ob-1",
+      "employeeId": "emp-13",
+      "title": "Submit signed Employment Agreement & Confidentiality NDA",
+      "category": "Compliance",
+      "dueDate": "2026-09-12",
+      "isCompleted": false,
+      "completedAt": null
+    },
+    {
+      "id": "ob-2",
+      "employeeId": "emp-13",
+      "title": "Configure Corporate Okta Single Sign-On and 2FA",
+      "category": "IT & Hardware",
+      "dueDate": "2026-09-10",
+      "isCompleted": false,
+      "completedAt": null
+    },
+    {
+      "id": "ob-3",
+      "employeeId": "emp-13",
+      "title": "Attend Executive Leadership & Values Orientation",
+      "category": "Orientation",
+      "dueDate": "2026-09-15",
+      "isCompleted": false,
+      "completedAt": null
+    }
+  ]
+}
