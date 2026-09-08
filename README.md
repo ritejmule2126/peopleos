@@ -1,4 +1,8 @@
-# 👥 PeopleOS
+<div align="left">
+  <img src="./public/logo.png" alt="PeopleOS Core Symbol" width="115" height="121" style="border-radius: 6px; margin-bottom: 12px;" />
+</div>
+
+# PeopleOS
 ### The Modern, Open-Source Alternative to Zoho People & BambooHR.
 
 <p align="left">

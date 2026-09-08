@@ -256,20 +256,19 @@ export const AuthPage: React.FC = () => {
         {/* Top Header */}
         <div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '40px' }}>
-            <div
+            <img
+              src="/logo.png"
+              alt="PeopleOS Logo"
               style={{
-                width: '42px',
-                height: '42px',
+                width: '46px',
+                height: '46px',
                 borderRadius: '10px',
-                background: 'linear-gradient(135deg, #0066ff 0%, #00d2ff 100%)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                boxShadow: '0 8px 24px rgba(0,102,255,0.35)',
+                objectFit: 'contain',
+                backgroundColor: '#ffffff',
+                padding: '3px',
+                boxShadow: '0 8px 24px rgba(0, 166, 156, 0.35)',
               }}
-            >
-              <Shield size={24} color="#ffffff" />
-            </div>
+            />
             <div>
               <span style={{ fontSize: '24px', fontWeight: 800, letterSpacing: '-0.5px' }}>PeopleOS</span>
               <span

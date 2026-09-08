@@ -66,23 +66,19 @@ export const Sidebar: React.FC = () => {
           borderBottom: '1px solid #1e293b',
         }}
       >
-        <div
+        <img
+          src="/logo.png"
+          alt="PeopleOS Logo"
           style={{
             width: '38px',
             height: '38px',
-            borderRadius: '10px',
-            background: 'linear-gradient(135deg, #0066ff 0%, #00d2ff 100%)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            boxShadow: '0 4px 12px rgba(0, 102, 255, 0.4)',
-            color: '#fff',
-            fontWeight: 800,
-            fontSize: '18px',
+            borderRadius: '8px',
+            objectFit: 'contain',
+            backgroundColor: '#ffffff',
+            padding: '2px',
+            boxShadow: '0 4px 12px rgba(0, 166, 156, 0.3)',
           }}
-        >
-          P
-        </div>
+        />
         <div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
             <span style={{ fontSize: '16px', fontWeight: 700, letterSpacing: '-0.3px', color: '#ffffff' }}>
