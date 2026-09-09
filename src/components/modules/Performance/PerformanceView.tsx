@@ -154,57 +154,24 @@ export const PerformanceView: React.FC = () => {
       </div>
 
       {/* Tabs */}
-      <div style={{ display: 'flex', borderBottom: '1px solid #e2e8f0', marginBottom: '20px' }}>
+      <div className="tab-nav">
         <button
           onClick={() => setActiveTab('goals')}
-          style={{
-            padding: '10px 18px',
-            fontSize: '13px',
-            fontWeight: 600,
-            color: activeTab === 'goals' ? '#0066ff' : '#64748b',
-            borderBottom: activeTab === 'goals' ? '2px solid #0066ff' : '2px solid transparent',
-            background: 'none',
-            borderTop: 'none',
-            borderLeft: 'none',
-            borderRight: 'none',
-            cursor: 'pointer',
-          }}
+          className={`tab-btn ${activeTab === 'goals' ? 'active' : ''}`}
         >
           My Goals & KRAs ({userGoals.length})
         </button>
 
         <button
           onClick={() => setActiveTab('kudos')}
-          style={{
-            padding: '10px 18px',
-            fontSize: '13px',
-            fontWeight: 600,
-            color: activeTab === 'kudos' ? '#0066ff' : '#64748b',
-            borderBottom: activeTab === 'kudos' ? '2px solid #0066ff' : '2px solid transparent',
-            background: 'none',
-            borderTop: 'none',
-            borderLeft: 'none',
-            borderRight: 'none',
-            cursor: 'pointer',
-          }}
+          className={`tab-btn ${activeTab === 'kudos' ? 'active' : ''}`}
         >
           Kudos Wall ({kudosList.length})
         </button>
 
         <button
           onClick={() => setActiveTab('appraisals')}
-          style={{
-            padding: '10px 18px',
-            fontSize: '13px',
-            fontWeight: 600,
-            color: activeTab === 'appraisals' ? '#0066ff' : '#64748b',
-            borderBottom: activeTab === 'appraisals' ? '2px solid #0066ff' : '2px solid transparent',
-            background: 'none',
-            borderTop: 'none',
-            borderLeft: 'none',
-            borderRight: 'none',
-            cursor: 'pointer',
-          }}
+          className={`tab-btn ${activeTab === 'appraisals' ? 'active' : ''}`}
         >
           Appraisal Reviews 2026
         </button>

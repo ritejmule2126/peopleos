@@ -463,8 +463,8 @@
     "emp-7": {
       "CL": {
         "total": 12,
-        "used": 5,
-        "remaining": 7
+        "used": 7,
+        "remaining": 5
       },
       "SL": {
         "total": 10,
@@ -540,10 +540,11 @@
       "days": 2,
       "isHalfDay": false,
       "reason": "Family celebration in hometown.",
-      "status": "Pending",
+      "status": "Approved",
       "appliedOn": "2026-09-06",
       "approverId": "emp-2",
-      "approverName": "Alex Rivera"
+      "approverName": "Alex Rivera",
+      "approverComments": "Approved by manager"
     },
     {
       "id": "lr-2",

@@ -9,9 +9,9 @@ import {
   UserCheck,
   BarChart3,
   Settings,
-  ChevronRight,
   RotateCcw,
   LogOut,
+  HelpCircle,
 } from 'lucide-react';
 import { Logo } from '../common/Logo';
 import { useApp, NavigationModule } from '../../context/AppContext';
@@ -26,88 +26,86 @@ export const Sidebar: React.FC = () => {
     tickets,
     resetDemoData,
     logout,
-    theme,
   } = useApp();
 
   const pendingLeavesCount = leaveRequests.filter((r) => r.status === 'Pending').length;
   const openTicketsCount = tickets.filter((t) => t.status === 'Open').length;
 
   const navItems: { id: NavigationModule; label: string; icon: any; badge?: number }[] = [
-    { id: 'dashboard', label: 'Home', icon: LayoutDashboard },
-    { id: 'employees', label: 'Employees', icon: Users },
+    { id: 'dashboard', label: 'Overview', icon: LayoutDashboard },
+    { id: 'employees', label: 'Directory', icon: Users },
     { id: 'attendance', label: 'Attendance', icon: Clock },
-    { id: 'leaves', label: 'Leave Tracker', icon: CalendarDays, badge: pendingLeavesCount },
+    { id: 'leaves', label: 'Time Off', icon: CalendarDays, badge: pendingLeavesCount },
     { id: 'performance', label: 'Performance', icon: Target },
-    { id: 'helpdesk', label: 'HR Helpdesk', icon: LifeBuoy, badge: openTicketsCount },
+    { id: 'helpdesk', label: 'Helpdesk', icon: LifeBuoy, badge: openTicketsCount },
     { id: 'onboarding', label: 'Onboarding', icon: UserCheck },
-    { id: 'analytics', label: 'Reports', icon: BarChart3 },
+    { id: 'analytics', label: 'Analytics', icon: BarChart3 },
     { id: 'settings', label: 'Settings', icon: Settings },
   ];
 
   return (
     <aside
       style={{
-        width: '260px',
-        backgroundColor: 'var(--sidebar-bg)',
-        color: 'var(--text-primary)',
+        width: '240px',
+        backgroundColor: 'var(--bg-surface)',
+        borderRight: '1px solid var(--border-color)',
         display: 'flex',
         flexDirection: 'column',
         height: '100vh',
-        borderRight: '1px solid var(--sidebar-border)',
         flexShrink: 0,
         userSelect: 'none',
-        transition: 'background-color 0.2s ease, border-color 0.2s ease',
       }}
     >
       {/* Brand Header */}
       <div
         style={{
-          padding: '20px 20px 16px',
+          height: '60px',
+          padding: '0 20px',
           display: 'flex',
           alignItems: 'center',
-          gap: '12px',
-          borderBottom: '1px solid var(--border-subtle)',
+          gap: '10px',
+          borderBottom: '1px solid var(--border-color)',
         }}
       >
         <div
           style={{
-            width: '38px',
-            height: '38px',
-            borderRadius: '8px',
-            backgroundColor: '#ffffff',
-            padding: '2px',
+            width: '32px',
+            height: '32px',
+            borderRadius: 'var(--radius-sm)',
+            backgroundColor: 'var(--bg-surface)',
             border: '1px solid var(--border-color)',
-            boxShadow: '0 2px 6px rgba(0, 166, 156, 0.15)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            overflow: 'hidden',
           }}
         >
-          <Logo width={34} height={36} />
+          <Logo width={26} height={28} />
         </div>
-        <div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-            <span style={{ fontSize: '16px', fontWeight: 700, letterSpacing: '-0.3px', color: 'var(--text-primary)' }}>
-              People<span style={{ color: '#0066ff' }}>OS</span>
-            </span>
-            <span
-              style={{
-                fontSize: '10px',
-                fontWeight: 700,
-                color: '#059669',
-                background: theme === 'dark' ? 'rgba(5, 150, 105, 0.2)' : '#ecfdf5',
-                padding: '1px 6px',
-                borderRadius: '4px',
-                border: '1px solid rgba(5, 150, 105, 0.3)',
-              }}
-            >
-              OPEN SOURCE
-            </span>
-          </div>
-          <div style={{ fontSize: '11px', color: 'var(--text-muted)', marginTop: '1px' }}>
-            Acuity Solutions
-          </div>
+        <div style={{ display: 'flex', alignItems: 'baseline', gap: '6px' }}>
+          <span
+            style={{
+              fontFamily: 'var(--font-heading)',
+              fontSize: '15px',
+              fontWeight: 700,
+              letterSpacing: '-0.02em',
+              color: 'var(--text-primary)',
+            }}
+          >
+            People<span style={{ color: 'var(--primary-600)' }}>OS</span>
+          </span>
+          <span
+            style={{
+              fontSize: '10px',
+              fontWeight: 600,
+              color: 'var(--text-muted)',
+              backgroundColor: 'var(--bg-muted)',
+              padding: '1px 5px',
+              borderRadius: 'var(--radius-sm)',
+              border: '1px solid var(--border-color)',
+            }}
+          >
+            v2.0
+          </span>
         </div>
       </div>
 
@@ -118,14 +116,14 @@ export const Sidebar: React.FC = () => {
             fontSize: '11px',
             fontWeight: 600,
             textTransform: 'uppercase',
-            letterSpacing: '0.6px',
-            color: '#94a3b8',
-            padding: '0 12px 10px',
+            letterSpacing: '0.06em',
+            color: 'var(--text-muted)',
+            padding: '0 10px 8px',
           }}
         >
-          Main Menu
+          Platform
         </div>
-        <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '4px' }}>
+        <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '2px' }}>
           {navItems.map((item) => {
             const Icon = item.icon;
             const isActive = activeModule === item.id;
@@ -135,23 +133,23 @@ export const Sidebar: React.FC = () => {
                   onClick={() => setActiveModule(item.id)}
                   style={{
                     width: '100%',
+                    height: '34px',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
-                    padding: '10px 14px',
-                    borderRadius: '8px',
+                    padding: '0 10px',
+                    borderRadius: 'var(--radius-md)',
                     fontSize: '13px',
                     fontWeight: isActive ? 600 : 500,
-                    color: isActive ? '#0066ff' : 'var(--text-secondary)',
+                    color: isActive ? 'var(--primary-600)' : 'var(--text-secondary)',
                     backgroundColor: isActive ? 'var(--primary-tint)' : 'transparent',
                     border: 'none',
                     cursor: 'pointer',
-                    transition: 'all 0.15s ease',
-                    textAlign: 'left',
+                    transition: 'all 0.12s ease',
                   }}
                   onMouseEnter={(e) => {
                     if (!isActive) {
-                      e.currentTarget.style.backgroundColor = 'var(--hover-bg)';
+                      e.currentTarget.style.backgroundColor = 'var(--bg-surface-hover)';
                       e.currentTarget.style.color = 'var(--text-primary)';
                     }
                   }}
@@ -162,27 +160,26 @@ export const Sidebar: React.FC = () => {
                     }
                   }}
                 >
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                    <Icon size={18} color={isActive ? '#0066ff' : 'var(--text-muted)'} />
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                    <Icon size={16} color={isActive ? 'var(--primary-600)' : 'var(--text-muted)'} />
                     <span>{item.label}</span>
                   </div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                    {item.badge && item.badge > 0 ? (
-                      <span
-                        style={{
-                          backgroundColor: '#ef4444',
-                          color: '#ffffff',
-                          fontSize: '10px',
-                          fontWeight: 700,
-                          padding: '2px 6px',
-                          borderRadius: '10px',
-                        }}
-                      >
-                        {item.badge}
-                      </span>
-                    ) : null}
-                    {isActive && <ChevronRight size={14} color="#0066ff" />}
-                  </div>
+                  {item.badge && item.badge > 0 ? (
+                    <span
+                      style={{
+                        backgroundColor: 'var(--danger-main)',
+                        color: '#ffffff',
+                        fontSize: '10px',
+                        fontWeight: 700,
+                        padding: '1px 6px',
+                        borderRadius: 'var(--radius-full)',
+                        minWidth: '18px',
+                        textAlign: 'center',
+                      }}
+                    >
+                      {item.badge}
+                    </span>
+                  ) : null}
                 </button>
               </li>
             );
@@ -190,24 +187,24 @@ export const Sidebar: React.FC = () => {
         </ul>
       </nav>
 
-      {/* User Footer Profile */}
+      {/* User Footer Panel */}
       <div
         style={{
-          padding: '16px',
-          borderTop: '1px solid var(--border-subtle)',
-          backgroundColor: 'var(--bg-surface-secondary)',
+          padding: '14px 16px',
+          borderTop: '1px solid var(--border-color)',
+          backgroundColor: 'var(--bg-surface)',
         }}
       >
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '12px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '10px' }}>
           <img
             src={currentUser.avatar}
             alt={currentUser.firstName}
             style={{
-              width: '36px',
-              height: '36px',
+              width: '32px',
+              height: '32px',
               borderRadius: '50%',
               objectFit: 'cover',
-              border: '2px solid var(--border-color)',
+              border: '1px solid var(--border-color)',
             }}
           />
           <div style={{ overflow: 'hidden', flex: 1 }}>
@@ -226,42 +223,27 @@ export const Sidebar: React.FC = () => {
             <div
               style={{
                 fontSize: '11px',
-                color: '#0066ff',
-                fontWeight: 500,
+                color: 'var(--text-muted)',
                 whiteSpace: 'nowrap',
                 overflow: 'hidden',
                 textOverflow: 'ellipsis',
               }}
             >
-              {currentRole === 'FOUNDER'
-                ? '👑 Founder & CEO'
-                : currentRole === 'HR_ADMIN'
-                ? 'HR Administrator'
-                : currentRole === 'MANAGER'
-                ? 'Team Manager'
-                : 'Employee'}
+              {currentRole === 'FOUNDER' ? '👑 Founder' : currentRole === 'HR_ADMIN' ? 'HR Admin' : currentRole === 'MANAGER' ? 'Manager' : 'Employee'}
             </div>
           </div>
         </div>
 
-        <div style={{ display: 'flex', gap: '8px' }}>
+        <div style={{ display: 'flex', gap: '6px' }}>
           <button
             onClick={() => {
-              if (confirm('Reset application data to initial demo state?')) {
+              if (confirm('Reset demo data to default?')) {
                 resetDemoData();
               }
             }}
             className="btn btn-ghost btn-sm"
-            style={{
-              flex: 1,
-              color: 'var(--text-secondary)',
-              fontSize: '11px',
-              padding: '6px',
-              justifyContent: 'center',
-              backgroundColor: 'var(--bg-surface)',
-              border: '1px solid var(--border-color)',
-            }}
-            title="Reset database to initial demo values"
+            style={{ flex: 1, height: '28px', fontSize: '11px', color: 'var(--text-secondary)' }}
+            title="Reset data"
           >
             <RotateCcw size={12} />
             Reset
@@ -269,24 +251,16 @@ export const Sidebar: React.FC = () => {
 
           <button
             onClick={() => {
-              if (confirm('Sign out of PeopleOS?')) {
+              if (confirm('Sign out of current workspace?')) {
                 logout();
               }
             }}
             className="btn btn-ghost btn-sm"
-            style={{
-              flex: 1,
-              color: '#dc2626',
-              fontSize: '11px',
-              padding: '6px',
-              justifyContent: 'center',
-              backgroundColor: '#fef2f2',
-              border: '1px solid #fecaca',
-            }}
-            title="Sign out of current workspace"
+            style={{ flex: 1, height: '28px', fontSize: '11px', color: 'var(--danger-main)' }}
+            title="Sign out"
           >
             <LogOut size={12} />
-            Sign Out
+            Exit
           </button>
         </div>
       </div>

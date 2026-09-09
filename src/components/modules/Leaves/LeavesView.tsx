@@ -130,97 +130,72 @@ export const LeavesView: React.FC = () => {
         style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-          gap: '16px',
+          gap: '14px',
           marginBottom: '24px',
         }}
       >
-        <div className="zp-card" style={{ padding: '16px', borderLeft: '4px solid #0066ff' }}>
-          <div style={{ fontSize: '11px', fontWeight: 600, color: '#64748b' }}>CASUAL LEAVE (CL)</div>
-          <div style={{ fontSize: '28px', fontWeight: 800, color: '#0066ff', margin: '4px 0' }}>
+        <div className="zp-card" style={{ padding: '16px' }}>
+          <div style={{ fontSize: '11px', fontWeight: 600, color: 'var(--text-muted)' }}>CASUAL LEAVE (CL)</div>
+          <div style={{ fontSize: '26px', fontWeight: 800, color: 'var(--primary-600)', margin: '4px 0' }}>
             {userBalance.CL.remaining}
           </div>
-          <div style={{ fontSize: '11px', color: '#64748b' }}>
+          <div style={{ fontSize: '11px', color: 'var(--text-secondary)' }}>
             Used: {userBalance.CL.used} · Total: {userBalance.CL.total}
           </div>
         </div>
 
-        <div className="zp-card" style={{ padding: '16px', borderLeft: '4px solid #10b981' }}>
-          <div style={{ fontSize: '11px', fontWeight: 600, color: '#64748b' }}>SICK LEAVE (SL)</div>
-          <div style={{ fontSize: '28px', fontWeight: 800, color: '#10b981', margin: '4px 0' }}>
+        <div className="zp-card" style={{ padding: '16px' }}>
+          <div style={{ fontSize: '11px', fontWeight: 600, color: 'var(--text-muted)' }}>SICK LEAVE (SL)</div>
+          <div style={{ fontSize: '26px', fontWeight: 800, color: 'var(--success-main)', margin: '4px 0' }}>
             {userBalance.SL.remaining}
           </div>
-          <div style={{ fontSize: '11px', color: '#64748b' }}>
+          <div style={{ fontSize: '11px', color: 'var(--text-secondary)' }}>
             Used: {userBalance.SL.used} · Total: {userBalance.SL.total}
           </div>
         </div>
 
-        <div className="zp-card" style={{ padding: '16px', borderLeft: '4px solid #8b5cf6' }}>
-          <div style={{ fontSize: '11px', fontWeight: 600, color: '#64748b' }}>PRIVILEGE LEAVE (PL)</div>
-          <div style={{ fontSize: '28px', fontWeight: 800, color: '#8b5cf6', margin: '4px 0' }}>
+        <div className="zp-card" style={{ padding: '16px' }}>
+          <div style={{ fontSize: '11px', fontWeight: 600, color: 'var(--text-muted)' }}>PRIVILEGE LEAVE (PL)</div>
+          <div style={{ fontSize: '26px', fontWeight: 800, color: 'var(--purple-main)', margin: '4px 0' }}>
             {userBalance.PL.remaining}
           </div>
-          <div style={{ fontSize: '11px', color: '#64748b' }}>
+          <div style={{ fontSize: '11px', color: 'var(--text-secondary)' }}>
             Used: {userBalance.PL.used} · Total: {userBalance.PL.total}
           </div>
         </div>
 
-        <div className="zp-card" style={{ padding: '16px', borderLeft: '4px solid #f59e0b' }}>
-          <div style={{ fontSize: '11px', fontWeight: 600, color: '#64748b' }}>PARENTAL LEAVE (ML)</div>
-          <div style={{ fontSize: '28px', fontWeight: 800, color: '#f59e0b', margin: '4px 0' }}>
+        <div className="zp-card" style={{ padding: '16px' }}>
+          <div style={{ fontSize: '11px', fontWeight: 600, color: 'var(--text-muted)' }}>PARENTAL LEAVE (ML)</div>
+          <div style={{ fontSize: '26px', fontWeight: 800, color: 'var(--warning-main)', margin: '4px 0' }}>
             {userBalance.ML.remaining}
           </div>
-          <div style={{ fontSize: '11px', color: '#64748b' }}>Available days</div>
+          <div style={{ fontSize: '11px', color: 'var(--text-secondary)' }}>Available days</div>
         </div>
 
-        <div className="zp-card" style={{ padding: '16px', borderLeft: '4px solid #94a3b8' }}>
-          <div style={{ fontSize: '11px', fontWeight: 600, color: '#64748b' }}>UNPAID LEAVE (UL)</div>
-          <div style={{ fontSize: '28px', fontWeight: 800, color: '#64748b', margin: '4px 0' }}>
+        <div className="zp-card" style={{ padding: '16px' }}>
+          <div style={{ fontSize: '11px', fontWeight: 600, color: 'var(--text-muted)' }}>UNPAID LEAVE (UL)</div>
+          <div style={{ fontSize: '26px', fontWeight: 800, color: 'var(--text-secondary)', margin: '4px 0' }}>
             {userBalance.UL.remaining}
           </div>
-          <div style={{ fontSize: '11px', color: '#64748b' }}>Available days</div>
+          <div style={{ fontSize: '11px', color: 'var(--text-secondary)' }}>Available days</div>
         </div>
       </div>
 
       {/* Tabs */}
-      <div style={{ display: 'flex', borderBottom: '1px solid #e2e8f0', marginBottom: '20px' }}>
+      <div className="tab-nav">
         <button
           onClick={() => setActiveTab('myLeaves')}
-          style={{
-            padding: '10px 18px',
-            fontSize: '13px',
-            fontWeight: 600,
-            color: activeTab === 'myLeaves' ? '#0066ff' : '#64748b',
-            borderBottom: activeTab === 'myLeaves' ? '2px solid #0066ff' : '2px solid transparent',
-            background: 'none',
-            borderTop: 'none',
-            borderLeft: 'none',
-            borderRight: 'none',
-            cursor: 'pointer',
-          }}
+          className={`tab-btn ${activeTab === 'myLeaves' ? 'active' : ''}`}
         >
-          My Leave Applications ({myRequests.length})
+          My Applications ({myRequests.length})
         </button>
 
         {canViewApprovals && (
           <button
             onClick={() => setActiveTab('approvals')}
-            style={{
-              padding: '10px 18px',
-              fontSize: '13px',
-              fontWeight: 600,
-              color: activeTab === 'approvals' ? '#0066ff' : '#64748b',
-              borderBottom: activeTab === 'approvals' ? '2px solid #0066ff' : '2px solid transparent',
-              background: 'none',
-              borderTop: 'none',
-              borderLeft: 'none',
-              borderRight: 'none',
-              cursor: 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '6px',
-            }}
+            className={`tab-btn ${activeTab === 'approvals' ? 'active' : ''}`}
           >
-            Approvals Queue
+            <span>Approvals Queue</span>
             {pendingApprovals.length > 0 && (
               <span className="badge badge-danger">{pendingApprovals.length}</span>
             )}
@@ -229,18 +204,7 @@ export const LeavesView: React.FC = () => {
 
         <button
           onClick={() => setActiveTab('calendar')}
-          style={{
-            padding: '10px 18px',
-            fontSize: '13px',
-            fontWeight: 600,
-            color: activeTab === 'calendar' ? '#0066ff' : '#64748b',
-            borderBottom: activeTab === 'calendar' ? '2px solid #0066ff' : '2px solid transparent',
-            background: 'none',
-            borderTop: 'none',
-            borderLeft: 'none',
-            borderRight: 'none',
-            cursor: 'pointer',
-          }}
+          className={`tab-btn ${activeTab === 'calendar' ? 'active' : ''}`}
         >
           Company Holidays ({holidays.length})
         </button>

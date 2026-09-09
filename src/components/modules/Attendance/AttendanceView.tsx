@@ -140,13 +140,13 @@ export const AttendanceView: React.FC = () => {
       </div>
 
       {/* Top Terminal & Summary */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 2fr', gap: '20px', marginBottom: '24px' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 2fr', gap: '16px', marginBottom: '24px' }}>
         {/* Check-in Clock Terminal */}
-        <div className="zp-card" style={{ background: 'linear-gradient(135deg, #ffffff 0%, #f8faff 100%)' }}>
+        <div className="zp-card">
           <div className="zp-card-header">
             <div className="zp-card-title">
-              <Clock size={18} color="#0066ff" />
-              Live Punch Terminal
+              <Clock size={16} color="var(--primary-600)" />
+              <span>Shift Terminal</span>
             </div>
             <span className={`badge ${isPunchedIn ? (isOnBreak ? 'badge-warning' : 'badge-success') : 'badge-neutral'}`}>
               {isPunchedIn ? (isOnBreak ? 'Break' : 'Active Duty') : 'Signed Off'}
@@ -155,39 +155,41 @@ export const AttendanceView: React.FC = () => {
 
           <div className="zp-card-body">
             <div style={{ textAlign: 'center', padding: '10px 0' }}>
-              <div style={{ fontSize: '12px', color: '#64748b', fontWeight: 600 }}>TODAY'S WORKING HOURS</div>
+              <div style={{ fontSize: '11px', color: 'var(--text-muted)', fontWeight: 600, textTransform: 'uppercase' }}>
+                Today's Working Hours
+              </div>
               <div
                 style={{
-                  fontSize: '42px',
+                  fontSize: '36px',
                   fontWeight: 800,
-                  fontFamily: 'monospace',
-                  color: '#0f172a',
-                  letterSpacing: '1px',
-                  margin: '8px 0',
+                  fontFamily: 'var(--font-mono)',
+                  color: 'var(--text-primary)',
+                  letterSpacing: '0.02em',
+                  margin: '6px 0',
                 }}
               >
                 {formatTimer(workTimerSeconds)}
               </div>
-              <div style={{ fontSize: '12px', color: '#64748b' }}>
-                Standard Target: <strong>8h 00m</strong> · Shift: 09:00 AM - 06:00 PM
+              <div style={{ fontSize: '12px', color: 'var(--text-secondary)' }}>
+                Shift: 09:00 AM - 06:00 PM · <strong>8h Target</strong>
               </div>
             </div>
 
-            <div style={{ display: 'flex', gap: '10px', marginTop: '16px' }}>
+            <div style={{ display: 'flex', gap: '8px', marginTop: '14px' }}>
               {isPunchedIn ? (
                 <>
                   <button onClick={toggleBreak} className="btn btn-secondary" style={{ flex: 1 }}>
-                    <Coffee size={15} />
+                    <Coffee size={14} />
                     {isOnBreak ? 'Resume Work' : 'Take Break'}
                   </button>
                   <button onClick={punchOut} className="btn btn-danger" style={{ flex: 1 }}>
-                    <Square size={15} />
+                    <Square size={14} />
                     Check Out
                   </button>
                 </>
               ) : (
-                <button onClick={punchIn} className="btn btn-success" style={{ width: '100%', padding: '12px' }}>
-                  <Play size={16} />
+                <button onClick={punchIn} className="btn btn-success" style={{ width: '100%' }}>
+                  <Play size={14} />
                   Check In (Start Shift)
                 </button>
               )}
@@ -199,42 +201,42 @@ export const AttendanceView: React.FC = () => {
         <div className="zp-card">
           <div className="zp-card-header">
             <div className="zp-card-title">
-              <Calendar size={18} color="#0066ff" />
-              September 2026 Summary ({currentUser.firstName} {currentUser.lastName})
+              <Calendar size={16} color="var(--primary-600)" />
+              <span>September 2026 Summary</span>
             </div>
           </div>
           <div className="zp-card-body">
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '14px' }}>
-              <div style={{ padding: '14px', background: '#ecfdf5', borderRadius: '10px', textAlign: 'center', border: '1px solid #a7f3d0' }}>
-                <div style={{ fontSize: '11px', color: '#065f46', fontWeight: 700 }}>PRESENT DAYS</div>
-                <div style={{ fontSize: '26px', fontWeight: 800, color: '#047857', margin: '4px 0' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '12px' }}>
+              <div style={{ padding: '12px', background: 'var(--bg-muted)', borderRadius: 'var(--radius-md)', textAlign: 'center', border: '1px solid var(--border-color)' }}>
+                <div style={{ fontSize: '11px', color: 'var(--text-muted)', fontWeight: 600 }}>PRESENT DAYS</div>
+                <div style={{ fontSize: '24px', fontWeight: 800, color: 'var(--success-main)', margin: '4px 0' }}>
                   {presentDays}
                 </div>
-                <div style={{ fontSize: '10px', color: '#059669' }}>On time records</div>
+                <div style={{ fontSize: '10px', color: 'var(--text-secondary)' }}>On time records</div>
               </div>
 
-              <div style={{ padding: '14px', background: '#fffbeb', borderRadius: '10px', textAlign: 'center', border: '1px solid #fde68a' }}>
-                <div style={{ fontSize: '11px', color: '#92400e', fontWeight: 700 }}>LATE / HALF-DAY</div>
-                <div style={{ fontSize: '26px', fontWeight: 800, color: '#b45309', margin: '4px 0' }}>
+              <div style={{ padding: '12px', background: 'var(--bg-muted)', borderRadius: 'var(--radius-md)', textAlign: 'center', border: '1px solid var(--border-color)' }}>
+                <div style={{ fontSize: '11px', color: 'var(--text-muted)', fontWeight: 600 }}>LATE / HALF-DAY</div>
+                <div style={{ fontSize: '24px', fontWeight: 800, color: 'var(--warning-main)', margin: '4px 0' }}>
                   {lateDays + halfDays}
                 </div>
-                <div style={{ fontSize: '10px', color: '#d97706' }}>Grace allowed</div>
+                <div style={{ fontSize: '10px', color: 'var(--text-secondary)' }}>Grace allowed</div>
               </div>
 
-              <div style={{ padding: '14px', background: '#f5f3ff', borderRadius: '10px', textAlign: 'center', border: '1px solid #ddd6fe' }}>
-                <div style={{ fontSize: '11px', color: '#5b21b6', fontWeight: 700 }}>LEAVES TAKEN</div>
-                <div style={{ fontSize: '26px', fontWeight: 800, color: '#6d28d9', margin: '4px 0' }}>
+              <div style={{ padding: '12px', background: 'var(--bg-muted)', borderRadius: 'var(--radius-md)', textAlign: 'center', border: '1px solid var(--border-color)' }}>
+                <div style={{ fontSize: '11px', color: 'var(--text-muted)', fontWeight: 600 }}>LEAVES TAKEN</div>
+                <div style={{ fontSize: '24px', fontWeight: 800, color: 'var(--purple-main)', margin: '4px 0' }}>
                   {leaveDays}
                 </div>
-                <div style={{ fontSize: '10px', color: '#7c3aed' }}>Approved time off</div>
+                <div style={{ fontSize: '10px', color: 'var(--text-secondary)' }}>Approved time off</div>
               </div>
 
-              <div style={{ padding: '14px', background: '#eff6ff', borderRadius: '10px', textAlign: 'center', border: '1px solid #bfdbfe' }}>
-                <div style={{ fontSize: '11px', color: '#1e40af', fontWeight: 700 }}>AVG DAILY HOURS</div>
-                <div style={{ fontSize: '26px', fontWeight: 800, color: '#1d4ed8', margin: '4px 0' }}>
+              <div style={{ padding: '12px', background: 'var(--bg-muted)', borderRadius: 'var(--radius-md)', textAlign: 'center', border: '1px solid var(--border-color)' }}>
+                <div style={{ fontSize: '11px', color: 'var(--text-muted)', fontWeight: 600 }}>AVG DAILY HOURS</div>
+                <div style={{ fontSize: '24px', fontWeight: 800, color: 'var(--primary-600)', margin: '4px 0' }}>
                   {avgHours}h
                 </div>
-                <div style={{ fontSize: '10px', color: '#2563eb' }}>Daily productivity</div>
+                <div style={{ fontSize: '10px', color: 'var(--text-secondary)' }}>Productivity</div>
               </div>
             </div>
           </div>
@@ -242,21 +244,10 @@ export const AttendanceView: React.FC = () => {
       </div>
 
       {/* Tabs: My Attendance vs Team Attendance (if Manager or Admin) */}
-      <div style={{ display: 'flex', borderBottom: '1px solid #e2e8f0', marginBottom: '20px' }}>
+      <div className="tab-nav">
         <button
           onClick={() => setViewTab('myAttendance')}
-          style={{
-            padding: '10px 18px',
-            fontSize: '13px',
-            fontWeight: 600,
-            color: viewTab === 'myAttendance' ? '#0066ff' : '#64748b',
-            borderBottom: viewTab === 'myAttendance' ? '2px solid #0066ff' : '2px solid transparent',
-            background: 'none',
-            borderTop: 'none',
-            borderLeft: 'none',
-            borderRight: 'none',
-            cursor: 'pointer',
-          }}
+          className={`tab-btn ${viewTab === 'myAttendance' ? 'active' : ''}`}
         >
           My Attendance Log
         </button>
@@ -264,22 +255,11 @@ export const AttendanceView: React.FC = () => {
         {canViewTeam && (
           <button
             onClick={() => setViewTab('teamAttendance')}
-            style={{
-              padding: '10px 18px',
-              fontSize: '13px',
-              fontWeight: 600,
-              color: viewTab === 'teamAttendance' ? '#0066ff' : '#64748b',
-              borderBottom: viewTab === 'teamAttendance' ? '2px solid #0066ff' : '2px solid transparent',
-              background: 'none',
-              borderTop: 'none',
-              borderLeft: 'none',
-              borderRight: 'none',
-              cursor: 'pointer',
-            }}
+            className={`tab-btn ${viewTab === 'teamAttendance' ? 'active' : ''}`}
           >
             {currentRole === 'FOUNDER' || currentRole === 'HR_ADMIN'
               ? 'Organization Attendance Log'
-              : `Junior Downline Log (${downlineIds.length} Direct & Indirect Reports)`}
+              : `Downline Reports (${downlineIds.length})`}
           </button>
         )}
       </div>
