@@ -3,6 +3,8 @@ import { AppProvider, useApp } from './context/AppContext';
 import { Sidebar } from './components/layout/Sidebar';
 import { Header } from './components/layout/Header';
 import { SearchModal } from './components/common/SearchModal';
+import { CopilotDrawer } from './components/common/CopilotDrawer';
+import { ShortcutsModal } from './components/common/ShortcutsModal';
 import { DashboardView } from './components/modules/Dashboard/DashboardView';
 import { EmployeesView } from './components/modules/Employees/EmployeesView';
 import { AttendanceView } from './components/modules/Attendance/AttendanceView';
@@ -45,6 +47,12 @@ const MainLayout: React.FC = () => {
 
       {/* Global Spotlight Search Modal */}
       <SearchModal />
+
+      {/* PeopleOS AI Copilot / Oracle Drawer */}
+      <CopilotDrawer />
+
+      {/* Power User Keyboard Shortcuts Modal (?) */}
+      <ShortcutsModal />
     </div>
   );
 };

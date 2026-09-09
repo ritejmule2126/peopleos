@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Clock,
   Calendar,
@@ -14,8 +14,15 @@ import {
   Users,
   ChevronRight,
   TrendingUp,
+  Smile,
+  Flame,
+  Zap,
+  ThumbsUp,
+  Sparkles,
 } from 'lucide-react';
+import confetti from 'canvas-confetti';
 import { useApp } from '../../../context/AppContext';
+import { soundEffects } from '../../../services/soundEffects';
 
 export const DashboardView: React.FC = () => {
   const {
@@ -62,6 +69,44 @@ export const DashboardView: React.FC = () => {
     day: 'numeric',
   });
 
+  const [userMood, setUserMood] = useState<string>(() => {
+    return localStorage.getItem(`peopleos_mood_${currentUser.id}`) || '';
+  });
+
+  const handleSelectMood = (mood: string, emoji: string) => {
+    soundEffects.playPop();
+    setUserMood(mood);
+    localStorage.setItem(`peopleos_mood_${currentUser.id}`, mood);
+    if (['Energized', 'In The Flow', 'Great'].includes(mood)) {
+      confetti({
+        particleCount: 45,
+        spread: 60,
+        origin: { y: 0.6 },
+      });
+    }
+  };
+
+  const [reactions, setReactions] = useState<Record<string, Record<string, number>>>({});
+
+  const handleReaction = (kudosId: string, rxName: string) => {
+    soundEffects.playKudosChime();
+    setReactions((prev) => {
+      const currentKudosRx = prev[kudosId] || {};
+      return {
+        ...prev,
+        [kudosId]: {
+          ...currentKudosRx,
+          [rxName]: (currentKudosRx[rxName] || 0) + 1,
+        },
+      };
+    });
+    confetti({
+      particleCount: 35,
+      spread: 55,
+      origin: { y: 0.7 },
+    });
+  };
+
   return (
     <div className="page-body">
       {/* Welcome Banner */}
@@ -71,7 +116,7 @@ export const DashboardView: React.FC = () => {
           borderRadius: '16px',
           padding: '24px 32px',
           color: '#ffffff',
-          marginBottom: '24px',
+          marginBottom: '20px',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
@@ -95,19 +140,94 @@ export const DashboardView: React.FC = () => {
         {/* Quick action buttons */}
         <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
           <button
-            onClick={() => setActiveModule('leaves')}
+            onClick={() => {
+              soundEffects.playPop();
+              setActiveModule('leaves');
+            }}
             className="btn"
             style={{ backgroundColor: 'rgba(255, 255, 255, 0.15)', color: '#ffffff', border: '1px solid rgba(255, 255, 255, 0.3)' }}
           >
             <Plane size={15} /> Apply Leave
           </button>
           <button
-            onClick={() => setActiveModule('helpdesk')}
+            onClick={() => {
+              soundEffects.playPop();
+              setActiveModule('helpdesk');
+            }}
             className="btn"
             style={{ backgroundColor: '#ffffff', color: '#0066ff', fontWeight: 600 }}
           >
             <Plus size={15} /> Raise Case / Ticket
           </button>
+        </div>
+      </div>
+
+      {/* Daily Morale & Energy Pulse Bar */}
+      <div
+        style={{
+          backgroundColor: 'var(--card-bg)',
+          border: '1px solid var(--card-border)',
+          borderRadius: '12px',
+          padding: '14px 20px',
+          marginBottom: '24px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          flexWrap: 'wrap',
+          gap: '14px',
+          boxShadow: 'var(--card-shadow)',
+        }}
+      >
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <span style={{ fontSize: '22px' }}>⚡</span>
+          <div>
+            <div style={{ fontSize: '13px', fontWeight: 700, color: 'var(--text-primary)' }}>
+              Daily Team Pulse: How is your energy today, {currentUser.firstName}?
+            </div>
+            <div style={{ fontSize: '11px', color: 'var(--text-secondary)' }}>
+              {userMood
+                ? `You checked in as "${userMood}". Team Vibe: 94% Positive Morale across Acuity Solutions today!`
+                : '1-click confidential pulse keeps your team energized, supported, and balanced.'}
+            </div>
+          </div>
+        </div>
+
+        <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+          {[
+            { emoji: '🚀', label: 'Energized', color: '#3b82f6' },
+            { emoji: '😊', label: 'Great', color: '#10b981' },
+            { emoji: '⚡', label: 'In The Flow', color: '#8b5cf6' },
+            { emoji: '🥱', label: 'Tired', color: '#f59e0b' },
+            { emoji: '🤯', label: 'Overwhelmed', color: '#ef4444' },
+          ].map((m) => (
+            <button
+              key={m.label}
+              onClick={() => handleSelectMood(m.label, m.emoji)}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px',
+                padding: '6px 12px',
+                borderRadius: '8px',
+                border: userMood === m.label ? `2px solid ${m.color}` : '1px solid var(--border-color)',
+                backgroundColor: userMood === m.label ? 'var(--primary-tint)' : 'var(--bg-surface-secondary)',
+                color: 'var(--text-primary)',
+                fontSize: '12px',
+                fontWeight: userMood === m.label ? 700 : 500,
+                cursor: 'pointer',
+                transition: 'all 0.15s cubic-bezier(0.16, 1, 0.3, 1)',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-1px) scale(1.04)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0) scale(1)';
+              }}
+            >
+              <span style={{ fontSize: '14px' }}>{m.emoji}</span>
+              <span>{m.label}</span>
+            </button>
+          ))}
         </div>
       </div>
 
@@ -407,8 +527,53 @@ export const DashboardView: React.FC = () => {
                     <div style={{ fontSize: '13px', color: '#334155', lineHeight: 1.5 }}>
                       "{k.message}"
                     </div>
-                    <div style={{ fontSize: '10px', color: '#94a3b8', marginTop: '6px' }}>
-                      {k.timestamp} · ❤️ {k.likes} Likes
+
+                    {/* Interactive Multi-Reactions Bar */}
+                    <div
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        marginTop: '10px',
+                        paddingTop: '8px',
+                        borderTop: '1px solid rgba(0,0,0,0.06)',
+                      }}
+                    >
+                      <div style={{ display: 'flex', gap: '6px' }}>
+                        {[
+                          { emoji: '👏', name: 'clap' },
+                          { emoji: '🔥', name: 'fire' },
+                          { emoji: '🚀', name: 'rocket' },
+                          { emoji: '💡', name: 'insight' },
+                          { emoji: '❤️', name: 'heart' },
+                        ].map((rx) => {
+                          const count = (reactions[k.id]?.[rx.name] || 0) + (rx.name === 'heart' ? k.likes : 0);
+                          return (
+                            <button
+                              key={rx.name}
+                              onClick={() => handleReaction(k.id, rx.name)}
+                              style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '3px',
+                                padding: '3px 8px',
+                                borderRadius: '12px',
+                                border: '1px solid var(--border-color)',
+                                backgroundColor: 'var(--bg-surface)',
+                                cursor: 'pointer',
+                                fontSize: '11px',
+                                transition: 'transform 0.1s ease',
+                              }}
+                              onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.15)')}
+                              onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
+                            >
+                              <span>{rx.emoji}</span>
+                              <span style={{ fontWeight: 600, color: 'var(--text-secondary)' }}>{count}</span>
+                            </button>
+                          );
+                        })}
+                      </div>
+                      <span style={{ fontSize: '10px', color: '#94a3b8' }}>{k.timestamp}</span>
                     </div>
                   </div>
                 ))}

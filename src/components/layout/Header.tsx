@@ -14,8 +14,13 @@ import {
   ChevronDown,
   Sun,
   Moon,
+  Target,
+  Laptop,
+  Plane,
+  MessageSquare,
 } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
+import { soundEffects } from '../../services/soundEffects';
 import { UserRole } from '../../types';
 
 export const Header: React.FC = () => {
@@ -40,6 +45,12 @@ export const Header: React.FC = () => {
 
   const [isNotifOpen, setIsNotifOpen] = useState(false);
   const [isRoleDropdownOpen, setIsRoleDropdownOpen] = useState(false);
+  const [workStatus, setWorkStatus] = useState<'Deep Work' | 'In Meeting' | 'On Break' | 'Remote' | 'Traveling'>('Deep Work');
+  const [isStatusDropdownOpen, setIsStatusDropdownOpen] = useState(false);
+
+  // 8.0-hour shift target calculation (28,800 seconds)
+  const shiftProgressPercent = Math.min(100, Math.round((workTimerSeconds / 28800) * 100));
+  const strokeDashoffset = 87.96 - (87.96 * shiftProgressPercent) / 100;
 
   // Format work timer
   const formatTimer = (seconds: number) => {
@@ -47,6 +58,16 @@ export const Header: React.FC = () => {
     const mins = Math.floor((seconds % 3600) / 60);
     const secs = seconds % 60;
     return `${String(hrs).padStart(2, '0')}:${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+  };
+
+  const handlePunchIn = () => {
+    soundEffects.playPunchIn();
+    punchIn();
+  };
+
+  const handlePunchOut = () => {
+    soundEffects.playPunchOut();
+    punchOut();
   };
 
   const unreadCount = notifications.filter((n) => !n.read).length;
@@ -69,7 +90,10 @@ export const Header: React.FC = () => {
       {/* Left: Global Search trigger */}
       <div style={{ display: 'flex', alignItems: 'center', gap: '16px', flex: 1, maxWidth: '400px' }}>
         <button
-          onClick={() => setIsSearchModalOpen(true)}
+          onClick={() => {
+            soundEffects.playPop();
+            setIsSearchModalOpen(true);
+          }}
           style={{
             width: '100%',
             display: 'flex',
@@ -95,7 +119,7 @@ export const Header: React.FC = () => {
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <Search size={16} color="var(--text-muted)" />
-            <span>Search employees, cases, leaves...</span>
+            <span>Search employees, actions (⌘K)...</span>
           </div>
           <span
             style={{
@@ -114,8 +138,8 @@ export const Header: React.FC = () => {
       </div>
 
       {/* Right: Live Punch Clock Widget & Controls */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '18px' }}>
-        {/* Punch In / Out Card */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+        {/* Punch In / Out Card with Shift Gauge */}
         <div
           style={{
             display: 'flex',
@@ -123,35 +147,64 @@ export const Header: React.FC = () => {
             gap: '12px',
             backgroundColor: 'var(--bg-surface-secondary)',
             border: '1px solid var(--border-color)',
-            padding: '6px 12px',
+            padding: '5px 12px',
             borderRadius: '10px',
           }}
         >
+          {/* Shift Target Progress Ring */}
+          <div
+            title={`8.0h Daily Shift: ${shiftProgressPercent}% completed (${formatTimer(workTimerSeconds)})`}
+            style={{
+              position: 'relative',
+              width: '36px',
+              height: '36px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            <svg width="36" height="36" viewBox="0 0 36 36">
+              <circle
+                cx="18"
+                cy="18"
+                r="14"
+                fill="none"
+                stroke="var(--border-color)"
+                strokeWidth="3"
+              />
+              <circle
+                cx="18"
+                cy="18"
+                r="14"
+                fill="none"
+                stroke={shiftProgressPercent >= 100 ? '#10b981' : '#0066ff'}
+                strokeWidth="3"
+                strokeDasharray="87.96"
+                strokeDashoffset={strokeDashoffset}
+                strokeLinecap="round"
+                transform="rotate(-90 18 18)"
+                style={{ transition: 'stroke-dashoffset 0.4s ease' }}
+              />
+            </svg>
+            <span style={{ position: 'absolute', fontSize: '9px', fontWeight: 800, color: 'var(--text-primary)' }}>
+              {shiftProgressPercent}%
+            </span>
+          </div>
+
           {/* Status Indicator */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <span
+          <div>
+            <div style={{ fontSize: '10px', color: 'var(--text-muted)', fontWeight: 600, textTransform: 'uppercase' }}>
+              {isPunchedIn ? (isOnBreak ? 'Break Active' : 'Checked In') : 'Checked Out'}
+            </div>
+            <div
               style={{
-                width: '8px',
-                height: '8px',
-                borderRadius: '50%',
-                backgroundColor: isPunchedIn ? (isOnBreak ? '#f59e0b' : '#10b981') : 'var(--text-muted)',
-                boxShadow: isPunchedIn && !isOnBreak ? '0 0 8px #10b981' : 'none',
+                fontSize: '13px',
+                fontWeight: 700,
+                fontFamily: 'monospace',
+                color: isPunchedIn ? 'var(--text-primary)' : 'var(--text-muted)',
               }}
-            />
-            <div>
-              <div style={{ fontSize: '10px', color: 'var(--text-muted)', fontWeight: 600, textTransform: 'uppercase' }}>
-                {isPunchedIn ? (isOnBreak ? 'Break Active' : 'Checked In') : 'Checked Out'}
-              </div>
-              <div
-                style={{
-                  fontSize: '13px',
-                  fontWeight: 700,
-                  fontFamily: 'monospace',
-                  color: isPunchedIn ? 'var(--text-primary)' : 'var(--text-muted)',
-                }}
-              >
-                {formatTimer(workTimerSeconds)}
-              </div>
+            >
+              {formatTimer(workTimerSeconds)}
             </div>
           </div>
 
@@ -159,13 +212,16 @@ export const Header: React.FC = () => {
           {isPunchedIn ? (
             <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
               <button
-                onClick={toggleBreak}
+                onClick={() => {
+                  soundEffects.playPop();
+                  toggleBreak();
+                }}
                 className="btn btn-sm"
                 style={{
-                  backgroundColor: isOnBreak ? '#fef3c7' : '#ffffff',
-                  color: isOnBreak ? '#92400e' : '#475569',
+                  backgroundColor: isOnBreak ? '#fef3c7' : 'var(--bg-surface)',
+                  color: isOnBreak ? '#92400e' : 'var(--text-secondary)',
                   border: '1px solid',
-                  borderColor: isOnBreak ? '#fde68a' : '#cbd5e1',
+                  borderColor: isOnBreak ? '#fde68a' : 'var(--border-color)',
                 }}
                 title={isOnBreak ? 'Resume Work' : 'Start Break'}
               >
@@ -174,7 +230,7 @@ export const Header: React.FC = () => {
               </button>
 
               <button
-                onClick={punchOut}
+                onClick={handlePunchOut}
                 className="btn btn-sm btn-danger"
                 title="Punch Out for today"
               >
@@ -184,13 +240,112 @@ export const Header: React.FC = () => {
             </div>
           ) : (
             <button
-              onClick={punchIn}
+              onClick={handlePunchIn}
               className="btn btn-sm btn-success"
               title="Punch In and start timer"
             >
               <Play size={12} />
               Check In
             </button>
+          )}
+        </div>
+
+        {/* Live Work Status Radar Dropdown */}
+        <div style={{ position: 'relative' }}>
+          <button
+            onClick={() => {
+              soundEffects.playPop();
+              setIsStatusDropdownOpen(!isStatusDropdownOpen);
+            }}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '6px',
+              padding: '6px 10px',
+              borderRadius: '8px',
+              backgroundColor: 'var(--bg-surface-secondary)',
+              border: '1px solid var(--border-color)',
+              color: 'var(--text-primary)',
+              fontSize: '12px',
+              fontWeight: 600,
+              cursor: 'pointer',
+            }}
+            title="Set Live Work Status Radar"
+          >
+            <span
+              style={{
+                width: '7px',
+                height: '7px',
+                borderRadius: '50%',
+                backgroundColor:
+                  workStatus === 'Deep Work'
+                    ? '#8b5cf6'
+                    : workStatus === 'In Meeting'
+                    ? '#f59e0b'
+                    : workStatus === 'On Break'
+                    ? '#eab308'
+                    : workStatus === 'Remote'
+                    ? '#10b981'
+                    : '#0066ff',
+              }}
+            />
+            <span>{workStatus}</span>
+            <ChevronDown size={11} color="var(--text-muted)" />
+          </button>
+
+          {isStatusDropdownOpen && (
+            <div
+              style={{
+                position: 'absolute',
+                top: '110%',
+                right: 0,
+                width: '160px',
+                backgroundColor: 'var(--bg-surface)',
+                borderRadius: '8px',
+                boxShadow: '0 10px 25px rgba(0,0,0,0.18)',
+                border: '1px solid var(--border-color)',
+                padding: '6px',
+                zIndex: 100,
+              }}
+            >
+              {[
+                { name: 'Deep Work', icon: Target, color: '#8b5cf6' },
+                { name: 'In Meeting', icon: MessageSquare, color: '#f59e0b' },
+                { name: 'On Break', icon: Coffee, color: '#eab308' },
+                { name: 'Remote', icon: Laptop, color: '#10b981' },
+                { name: 'Traveling', icon: Plane, color: '#0066ff' },
+              ].map((st) => {
+                const Icon = st.icon;
+                return (
+                  <button
+                    key={st.name}
+                    onClick={() => {
+                      soundEffects.playPop();
+                      setWorkStatus(st.name as any);
+                      setIsStatusDropdownOpen(false);
+                    }}
+                    style={{
+                      width: '100%',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '8px',
+                      padding: '6px 8px',
+                      borderRadius: '6px',
+                      border: 'none',
+                      backgroundColor: workStatus === st.name ? 'var(--primary-tint)' : 'transparent',
+                      color: workStatus === st.name ? '#0066ff' : 'var(--text-primary)',
+                      fontSize: '12px',
+                      fontWeight: 500,
+                      cursor: 'pointer',
+                      textAlign: 'left',
+                    }}
+                  >
+                    <Icon size={13} color={st.color} />
+                    <span>{st.name}</span>
+                  </button>
+                );
+              })}
+            </div>
           )}
         </div>
 

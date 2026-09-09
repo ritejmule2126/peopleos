@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import {
   Target,
   Award,
@@ -10,10 +10,14 @@ import {
   Calendar,
   Sparkles,
   X,
+  Trophy,
+  Crown,
+  Flame,
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { useApp } from '../../../context/AppContext';
 import { Goal, KudosBadge } from '../../../types';
+import { soundEffects } from '../../../services/soundEffects';
 
 export const PerformanceView: React.FC = () => {
   const {
@@ -88,7 +92,8 @@ export const PerformanceView: React.FC = () => {
       message: kudosMessage,
     });
 
-    // Fire celebratory confetti!
+    // Sound effect & confetti
+    soundEffects.playKudos();
     try {
       confetti({
         particleCount: 80,
@@ -102,6 +107,24 @@ export const PerformanceView: React.FC = () => {
     setIsGiveKudosModalOpen(false);
     setKudosMessage('');
   };
+
+  // Top Recognized Team Members for the Recognition Podium
+  const kudosLeaderboard = useMemo(() => {
+    const counts: Record<string, { employeeId: string; count: number; name: string; avatar: string; topBadge: string }> = {};
+    kudosList.forEach((k) => {
+      if (!counts[k.toEmployeeId]) {
+        counts[k.toEmployeeId] = {
+          employeeId: k.toEmployeeId,
+          count: 0,
+          name: k.toEmployeeName,
+          avatar: k.toAvatar,
+          topBadge: k.badge,
+        };
+      }
+      counts[k.toEmployeeId].count += 1;
+    });
+    return Object.values(counts).sort((a, b) => b.count - a.count).slice(0, 3);
+  }, [kudosList]);
 
   // Filter goals for current user or overall
   const userGoals = goals.filter((g) => g.employeeId === currentUser.id);
@@ -276,80 +299,301 @@ export const PerformanceView: React.FC = () => {
 
       {/* TAB 2: KUDOS WALL */}
       {activeTab === 'kudos' && (
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))', gap: '20px' }}>
-          {kudosList.map((k) => {
-            const hasLiked = k.likedBy.includes(currentUser.id);
-            return (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+          {/* Recognition Champions Podium */}
+          {kudosLeaderboard.length > 0 && (
+            <div
+              className="zp-card"
+              style={{
+                background: 'linear-gradient(135deg, rgba(254, 243, 199, 0.35) 0%, rgba(255, 255, 255, 0.9) 100%)',
+                border: '1px solid rgba(245, 158, 11, 0.25)',
+                padding: '24px',
+                position: 'relative',
+                overflow: 'hidden',
+              }}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '20px' }}>
+                <div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '16px', fontWeight: 700, color: 'var(--text-main)' }}>
+                    <Trophy size={20} color="#f59e0b" />
+                    <span>Quarterly Recognition Champions</span>
+                  </div>
+                  <p style={{ margin: '4px 0 0 0', fontSize: '13px', color: 'var(--text-muted)' }}>
+                    Colleagues leading the peer-appreciation podium across all squads.
+                  </p>
+                </div>
+                <span
+                  style={{
+                    fontSize: '11px',
+                    fontWeight: 700,
+                    padding: '4px 10px',
+                    borderRadius: '20px',
+                    background: 'rgba(245, 158, 11, 0.12)',
+                    color: '#b45309',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '4px',
+                  }}
+                >
+                  <Flame size={14} /> Live Standings
+                </span>
+              </div>
+
+              {/* Olympic-style 3-Tier Podium */}
               <div
-                key={k.id}
-                className="zp-card"
                 style={{
-                  background: 'linear-gradient(135deg, #fffafd 0%, #ffffff 100%)',
-                  border: '1px solid #fce7f3',
+                  display: 'flex',
+                  alignItems: 'flex-end',
+                  justifyContent: 'center',
+                  gap: '16px',
+                  paddingTop: '20px',
+                  maxWidth: '650px',
+                  margin: '0 auto',
                 }}
               >
-                <div className="zp-card-body">
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '12px' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                {/* 2nd Place (Silver) */}
+                {kudosLeaderboard[1] && (
+                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flex: 1 }}>
+                    <div style={{ position: 'relative', marginBottom: '8px' }}>
                       <img
-                        src={k.fromAvatar}
-                        alt={k.fromEmployeeName}
-                        style={{ width: '34px', height: '34px', borderRadius: '50%', objectFit: 'cover' }}
+                        src={kudosLeaderboard[1].avatar}
+                        alt={kudosLeaderboard[1].name}
+                        style={{
+                          width: '56px',
+                          height: '56px',
+                          borderRadius: '50%',
+                          border: '3px solid #94a3b8',
+                          objectFit: 'cover',
+                          boxShadow: '0 4px 12px rgba(148, 163, 184, 0.3)',
+                        }}
                       />
-                      <div>
-                        <div style={{ fontSize: '13px', fontWeight: 600, color: '#0f172a' }}>
-                          {k.fromEmployeeName}
-                        </div>
-                        <div style={{ fontSize: '10px', color: '#94a3b8' }}>{k.timestamp}</div>
-                      </div>
+                      <span
+                        style={{
+                          position: 'absolute',
+                          bottom: '-4px',
+                          right: '-4px',
+                          fontSize: '18px',
+                        }}
+                      >
+                        🥈
+                      </span>
                     </div>
-                    <span
-                      className="badge"
-                      style={{ backgroundColor: '#fdf2f8', color: '#be185d', borderColor: '#fbcfe8' }}
-                    >
-                      🏆 {k.badge}
+                    <div style={{ fontSize: '13px', fontWeight: 700, color: 'var(--text-main)', textAlign: 'center' }}>
+                      {kudosLeaderboard[1].name}
+                    </div>
+                    <span style={{ fontSize: '11px', color: 'var(--text-muted)', marginBottom: '8px' }}>
+                      {kudosLeaderboard[1].count} kudos
                     </span>
-                  </div>
-
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', margin: '8px 0' }}>
-                    <span style={{ fontSize: '11px', color: '#94a3b8' }}>Shoutout to</span>
-                    <img
-                      src={k.toAvatar}
-                      alt={k.toEmployeeName}
-                      style={{ width: '24px', height: '24px', borderRadius: '50%', objectFit: 'cover' }}
-                    />
-                    <strong style={{ fontSize: '12px', color: '#0f172a' }}>{k.toEmployeeName}</strong>
-                  </div>
-
-                  <div style={{ fontSize: '13px', color: '#334155', lineHeight: 1.5, margin: '10px 0' }}>
-                    "{k.message}"
-                  </div>
-
-                  <div
-                    style={{
-                      borderTop: '1px solid #fdf2f8',
-                      paddingTop: '10px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'space-between',
-                    }}
-                  >
-                    <button
-                      onClick={() => likeKudos(k.id)}
-                      className="btn btn-ghost btn-sm"
+                    <div
                       style={{
-                        color: hasLiked ? '#ec4899' : '#64748b',
-                        padding: '4px 8px',
+                        width: '100%',
+                        height: '80px',
+                        borderRadius: '12px 12px 4px 4px',
+                        background: 'linear-gradient(180deg, #cbd5e1 0%, #94a3b8 100%)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        color: '#ffffff',
+                        fontWeight: 800,
+                        fontSize: '22px',
+                        boxShadow: 'inset 0 2px 4px rgba(255,255,255,0.4)',
                       }}
                     >
-                      <Heart size={14} fill={hasLiked ? '#ec4899' : 'none'} />
-                      <span>{k.likes} Likes</span>
-                    </button>
+                      2
+                    </div>
+                  </div>
+                )}
+
+                {/* 1st Place (Gold) */}
+                {kudosLeaderboard[0] && (
+                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flex: 1.15 }}>
+                    <Crown size={24} color="#f59e0b" style={{ marginBottom: '2px', filter: 'drop-shadow(0 2px 4px rgba(245, 158, 11, 0.4))' }} />
+                    <div style={{ position: 'relative', marginBottom: '8px' }}>
+                      <img
+                        src={kudosLeaderboard[0].avatar}
+                        alt={kudosLeaderboard[0].name}
+                        style={{
+                          width: '72px',
+                          height: '72px',
+                          borderRadius: '50%',
+                          border: '4px solid #f59e0b',
+                          objectFit: 'cover',
+                          boxShadow: '0 6px 16px rgba(245, 158, 11, 0.4)',
+                        }}
+                      />
+                      <span
+                        style={{
+                          position: 'absolute',
+                          bottom: '-4px',
+                          right: '-4px',
+                          fontSize: '22px',
+                        }}
+                      >
+                        🥇
+                      </span>
+                    </div>
+                    <div style={{ fontSize: '14px', fontWeight: 800, color: 'var(--text-main)', textAlign: 'center' }}>
+                      {kudosLeaderboard[0].name}
+                    </div>
+                    <span style={{ fontSize: '12px', fontWeight: 600, color: '#b45309', marginBottom: '8px' }}>
+                      {kudosLeaderboard[0].count} kudos received
+                    </span>
+                    <div
+                      style={{
+                        width: '100%',
+                        height: '115px',
+                        borderRadius: '14px 14px 4px 4px',
+                        background: 'linear-gradient(180deg, #fbbf24 0%, #f59e0b 100%)',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        color: '#ffffff',
+                        fontWeight: 900,
+                        fontSize: '28px',
+                        boxShadow: 'inset 0 3px 6px rgba(255,255,255,0.6), 0 8px 20px rgba(245, 158, 11, 0.3)',
+                      }}
+                    >
+                      1
+                    </div>
+                  </div>
+                )}
+
+                {/* 3rd Place (Bronze) */}
+                {kudosLeaderboard[2] && (
+                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flex: 1 }}>
+                    <div style={{ position: 'relative', marginBottom: '8px' }}>
+                      <img
+                        src={kudosLeaderboard[2].avatar}
+                        alt={kudosLeaderboard[2].name}
+                        style={{
+                          width: '56px',
+                          height: '56px',
+                          borderRadius: '50%',
+                          border: '3px solid #d97706',
+                          objectFit: 'cover',
+                          boxShadow: '0 4px 12px rgba(217, 119, 6, 0.3)',
+                        }}
+                      />
+                      <span
+                        style={{
+                          position: 'absolute',
+                          bottom: '-4px',
+                          right: '-4px',
+                          fontSize: '18px',
+                        }}
+                      >
+                        🥉
+                      </span>
+                    </div>
+                    <div style={{ fontSize: '13px', fontWeight: 700, color: 'var(--text-main)', textAlign: 'center' }}>
+                      {kudosLeaderboard[2].name}
+                    </div>
+                    <span style={{ fontSize: '11px', color: 'var(--text-muted)', marginBottom: '8px' }}>
+                      {kudosLeaderboard[2].count} kudos
+                    </span>
+                    <div
+                      style={{
+                        width: '100%',
+                        height: '60px',
+                        borderRadius: '12px 12px 4px 4px',
+                        background: 'linear-gradient(180deg, #fed7aa 0%, #d97706 100%)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        color: '#ffffff',
+                        fontWeight: 800,
+                        fontSize: '20px',
+                        boxShadow: 'inset 0 2px 4px rgba(255,255,255,0.4)',
+                      }}
+                    >
+                      3
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+
+          {/* Kudos Wall Cards Grid */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))', gap: '20px' }}>
+            {kudosList.map((k) => {
+              const hasLiked = k.likedBy.includes(currentUser.id);
+              return (
+                <div
+                  key={k.id}
+                  className="zp-card"
+                  style={{
+                    background: 'var(--bg-surface)',
+                    border: '1px solid var(--border-color)',
+                  }}
+                >
+                  <div className="zp-card-body">
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '12px' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                        <img
+                          src={k.fromAvatar}
+                          alt={k.fromEmployeeName}
+                          style={{ width: '34px', height: '34px', borderRadius: '50%', objectFit: 'cover' }}
+                        />
+                        <div>
+                          <div style={{ fontSize: '13px', fontWeight: 600, color: 'var(--text-main)' }}>
+                            {k.fromEmployeeName}
+                          </div>
+                          <div style={{ fontSize: '10px', color: 'var(--text-muted)' }}>{k.timestamp}</div>
+                        </div>
+                      </div>
+                      <span
+                        className="badge"
+                        style={{ backgroundColor: 'rgba(236, 72, 153, 0.1)', color: '#ec4899', borderColor: 'rgba(236, 72, 153, 0.2)' }}
+                      >
+                        🏆 {k.badge}
+                      </span>
+                    </div>
+
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', margin: '8px 0' }}>
+                      <span style={{ fontSize: '11px', color: 'var(--text-muted)' }}>Shoutout to</span>
+                      <img
+                        src={k.toAvatar}
+                        alt={k.toEmployeeName}
+                        style={{ width: '24px', height: '24px', borderRadius: '50%', objectFit: 'cover' }}
+                      />
+                      <strong style={{ fontSize: '12px', color: 'var(--text-main)' }}>{k.toEmployeeName}</strong>
+                    </div>
+
+                    <div style={{ fontSize: '13px', color: 'var(--text-muted)', lineHeight: 1.5, margin: '10px 0' }}>
+                      "{k.message}"
+                    </div>
+
+                    <div
+                      style={{
+                        borderTop: '1px solid var(--border-color)',
+                        paddingTop: '10px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                      }}
+                    >
+                      <button
+                        onClick={() => {
+                          soundEffects.playPop();
+                          likeKudos(k.id);
+                        }}
+                        className="btn btn-ghost btn-sm"
+                        style={{
+                          color: hasLiked ? '#ec4899' : 'var(--text-muted)',
+                          padding: '4px 8px',
+                        }}
+                      >
+                        <Heart size={14} fill={hasLiked ? '#ec4899' : 'none'} />
+                        <span>{k.likes} Likes</span>
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       )}
 
