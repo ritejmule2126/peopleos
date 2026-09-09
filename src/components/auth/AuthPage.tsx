@@ -16,6 +16,7 @@ import {
   ArrowLeft,
   Timer,
 } from 'lucide-react';
+import { Logo } from '../common/Logo';
 import { useApp } from '../../context/AppContext';
 
 export const AuthPage: React.FC = () => {
@@ -228,20 +229,23 @@ export const AuthPage: React.FC = () => {
         {/* Top Header */}
         <div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '40px' }}>
-            <img
-              src="/logo.png"
-              alt="PeopleOS Logo"
+            <div
               style={{
                 width: '46px',
                 height: '46px',
                 borderRadius: '10px',
-                objectFit: 'contain',
                 backgroundColor: '#ffffff',
                 padding: '3px',
                 border: '1px solid #cbd5e1',
                 boxShadow: '0 4px 12px rgba(0, 166, 156, 0.2)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                overflow: 'hidden',
               }}
-            />
+            >
+              <Logo width={42} height={44} />
+            </div>
             <div>
               <span style={{ fontSize: '26px', fontWeight: 800, letterSpacing: '-0.5px', color: '#0f172a' }}>
                 People<span style={{ color: '#0066ff' }}>OS</span>

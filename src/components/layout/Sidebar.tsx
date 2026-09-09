@@ -13,6 +13,7 @@ import {
   RotateCcw,
   LogOut,
 } from 'lucide-react';
+import { Logo } from '../common/Logo';
 import { useApp, NavigationModule } from '../../context/AppContext';
 
 export const Sidebar: React.FC = () => {
@@ -68,20 +69,23 @@ export const Sidebar: React.FC = () => {
           borderBottom: '1px solid var(--border-subtle)',
         }}
       >
-        <img
-          src="/logo.png"
-          alt="PeopleOS Logo"
+        <div
           style={{
             width: '38px',
             height: '38px',
             borderRadius: '8px',
-            objectFit: 'contain',
             backgroundColor: '#ffffff',
             padding: '2px',
             border: '1px solid var(--border-color)',
             boxShadow: '0 2px 6px rgba(0, 166, 156, 0.15)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            overflow: 'hidden',
           }}
-        />
+        >
+          <Logo width={34} height={36} />
+        </div>
         <div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
             <span style={{ fontSize: '16px', fontWeight: 700, letterSpacing: '-0.3px', color: 'var(--text-primary)' }}>
