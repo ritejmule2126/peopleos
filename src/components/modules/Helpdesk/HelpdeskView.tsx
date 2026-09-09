@@ -111,33 +111,20 @@ export const HelpdeskView: React.FC = () => {
       </div>
 
       {/* Filter Toolbar */}
-      <div
-        style={{
-          display: 'flex',
-          gap: '12px',
-          alignItems: 'center',
-          flexWrap: 'wrap',
-          marginBottom: '20px',
-          backgroundColor: '#ffffff',
-          padding: '12px 16px',
-          borderRadius: '10px',
-          border: '1px solid #e2e8f0',
-        }}
-      >
-        <div style={{ position: 'relative', flex: 1, minWidth: '240px' }}>
-          <Search size={16} color="#94a3b8" style={{ position: 'absolute', left: '12px', top: '11px' }} />
+      <div className="filter-bar">
+        <div className="search-input-wrapper">
+          <Search size={15} />
           <input
             type="text"
             placeholder="Search tickets by case ID, title, or employee..."
             value={searchFilter}
             onChange={(e) => setSearchFilter(e.target.value)}
             className="form-control"
-            style={{ paddingLeft: '36px' }}
           />
         </div>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <span style={{ fontSize: '12px', color: '#64748b', fontWeight: 600 }}>Filter Status:</span>
+          <span style={{ fontSize: '12px', color: 'var(--text-secondary)', fontWeight: 500 }}>Filter Status:</span>
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value as any)}

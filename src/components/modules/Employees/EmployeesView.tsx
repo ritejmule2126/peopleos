@@ -158,120 +158,63 @@ export const EmployeesView: React.FC = () => {
 
         {/* Right Action Controls */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-          {/* View Mode Toggle */}
-          <div
-            style={{
-              display: 'flex',
-              backgroundColor: '#ffffff',
-              border: '1px solid #cbd5e1',
-              borderRadius: '8px',
-              padding: '3px',
-            }}
-          >
+          {/* Segmented View Mode Toggle */}
+          <div className="segmented-control">
             <button
               onClick={() => setViewMode('grid')}
-              style={{
-                background: viewMode === 'grid' ? '#0066ff' : 'transparent',
-                color: viewMode === 'grid' ? '#ffffff' : '#64748b',
-                border: 'none',
-                borderRadius: '6px',
-                padding: '6px 10px',
-                cursor: 'pointer',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '4px',
-                fontSize: '12px',
-                fontWeight: 600,
-              }}
-              title="Card Grid View"
+              className={`segmented-btn ${viewMode === 'grid' ? 'active' : ''}`}
+              title="Grid View"
             >
-              <Grid size={15} /> Grid
+              <Grid size={14} /> <span>Grid</span>
             </button>
             <button
               onClick={() => setViewMode('table')}
-              style={{
-                background: viewMode === 'table' ? '#0066ff' : 'transparent',
-                color: viewMode === 'table' ? '#ffffff' : '#64748b',
-                border: 'none',
-                borderRadius: '6px',
-                padding: '6px 10px',
-                cursor: 'pointer',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '4px',
-                fontSize: '12px',
-                fontWeight: 600,
-              }}
-              title="Data Table View"
+              className={`segmented-btn ${viewMode === 'table' ? 'active' : ''}`}
+              title="Table View"
             >
-              <List size={15} /> List
+              <List size={14} /> <span>Table</span>
             </button>
             <button
               onClick={() => setViewMode('orgChart')}
-              style={{
-                background: viewMode === 'orgChart' ? '#0066ff' : 'transparent',
-                color: viewMode === 'orgChart' ? '#ffffff' : '#64748b',
-                border: 'none',
-                borderRadius: '6px',
-                padding: '6px 10px',
-                cursor: 'pointer',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '4px',
-                fontSize: '12px',
-                fontWeight: 600,
-              }}
-              title="Organization Hierarchy Tree"
+              className={`segmented-btn ${viewMode === 'orgChart' ? 'active' : ''}`}
+              title="Org Chart"
             >
-              <GitFork size={15} /> Org Chart
+              <GitFork size={14} /> <span>Org Chart</span>
             </button>
           </div>
 
           <button onClick={exportEmployeesCSV} className="btn btn-secondary">
-            <Download size={15} /> Export CSV
+            <Download size={14} /> <span>Export</span>
           </button>
 
           {(currentRole === 'FOUNDER' || currentRole === 'HR_ADMIN') && (
             <button onClick={() => setIsAddModalOpen(true)} className="btn btn-primary">
-              <Plus size={16} /> Onboard Employee
+              <Plus size={15} /> <span>Onboard Member</span>
             </button>
           )}
         </div>
       </div>
 
       {/* Filter Toolbar */}
-      <div
-        style={{
-          display: 'flex',
-          gap: '12px',
-          alignItems: 'center',
-          flexWrap: 'wrap',
-          marginBottom: '20px',
-          backgroundColor: '#ffffff',
-          padding: '12px 16px',
-          borderRadius: '10px',
-          border: '1px solid #e2e8f0',
-        }}
-      >
-        <div style={{ position: 'relative', flex: 1, minWidth: '220px' }}>
-          <Search size={16} color="#94a3b8" style={{ position: 'absolute', left: '12px', top: '11px' }} />
+      <div className="filter-bar">
+        <div className="search-input-wrapper">
+          <Search size={15} />
           <input
             type="text"
             placeholder="Search by name, ID, title, or email..."
             value={searchFilter}
             onChange={(e) => setSearchFilter(e.target.value)}
             className="form-control"
-            style={{ paddingLeft: '36px' }}
           />
         </div>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <span style={{ fontSize: '12px', color: '#64748b', fontWeight: 600 }}>Department:</span>
+          <span style={{ fontSize: '12px', color: 'var(--text-secondary)', fontWeight: 500 }}>Department:</span>
           <select
             value={departmentFilter}
             onChange={(e) => setDepartmentFilter(e.target.value)}
             className="form-control"
-            style={{ width: '170px' }}
+            style={{ width: '160px' }}
           >
             <option value="ALL">All Departments</option>
             {departments.map((d) => (
@@ -283,7 +226,7 @@ export const EmployeesView: React.FC = () => {
         </div>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <span style={{ fontSize: '12px', color: '#64748b', fontWeight: 600 }}>Status:</span>
+          <span style={{ fontSize: '12px', color: 'var(--text-secondary)', fontWeight: 500 }}>Status:</span>
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
@@ -298,8 +241,8 @@ export const EmployeesView: React.FC = () => {
           </select>
         </div>
 
-        <div style={{ fontSize: '12px', color: '#64748b', fontWeight: 600 }}>
-          Showing <strong>{filteredEmployees.length}</strong> members
+        <div style={{ fontSize: '12px', color: 'var(--text-muted)', marginLeft: 'auto' }}>
+          <strong>{filteredEmployees.length}</strong> colleagues
         </div>
       </div>
 

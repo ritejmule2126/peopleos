@@ -104,29 +104,30 @@ export const OnboardingView: React.FC = () => {
                     onClick={() => setSelectedCandidateId(hire.id)}
                     style={{
                       padding: '12px',
-                      borderRadius: '10px',
-                      backgroundColor: isSelected ? '#eff6ff' : '#ffffff',
+                      borderRadius: 'var(--radius-md)',
+                      backgroundColor: isSelected ? 'var(--primary-tint)' : 'var(--bg-surface)',
                       border: '1px solid',
-                      borderColor: isSelected ? '#3b82f6' : '#e2e8f0',
+                      borderColor: isSelected ? 'var(--primary-500)' : 'var(--border-color)',
                       display: 'flex',
                       alignItems: 'center',
                       gap: '12px',
                       cursor: 'pointer',
+                      transition: 'all 0.12s ease',
                     }}
                   >
                     <img
                       src={hire.avatar}
                       alt={hire.firstName}
-                      style={{ width: '40px', height: '40px', borderRadius: '50%', objectFit: 'cover' }}
+                      style={{ width: '38px', height: '38px', borderRadius: '50%', objectFit: 'cover', border: '1px solid var(--border-color)' }}
                     />
-                    <div style={{ flex: 1 }}>
-                      <div style={{ fontSize: '13px', fontWeight: 600, color: '#0f172a' }}>
+                    <div style={{ flex: 1, minWidth: 0 }}>
+                      <div style={{ fontSize: '13px', fontWeight: 600, color: 'var(--text-primary)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                         {hire.firstName} {hire.lastName}
                       </div>
-                      <div style={{ fontSize: '11px', color: '#64748b' }}>
+                      <div style={{ fontSize: '11px', color: 'var(--text-secondary)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                         {hire.designation} · {hire.department}
                       </div>
-                      <div style={{ fontSize: '10px', color: '#0066ff', marginTop: '2px' }}>
+                      <div style={{ fontSize: '10px', color: 'var(--primary-600)', marginTop: '2px', fontWeight: 500 }}>
                         Joined: {hire.dateOfJoining}
                       </div>
                     </div>

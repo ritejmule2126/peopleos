@@ -81,62 +81,62 @@ export const AnalyticsView: React.FC = () => {
         style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-          gap: '20px',
+          gap: '16px',
           marginBottom: '24px',
         }}
       >
-        <div className="zp-card" style={{ padding: '20px' }}>
+        <div className="stat-card">
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-            <span style={{ fontSize: '12px', fontWeight: 600, color: '#64748b' }}>TOTAL HEADCOUNT</span>
-            <div style={{ padding: '8px', borderRadius: '8px', backgroundColor: '#eff6ff' }}>
-              <Users size={20} color="#0066ff" />
+            <span className="stat-label">TOTAL HEADCOUNT</span>
+            <div style={{ padding: '6px', borderRadius: 'var(--radius-sm)', backgroundColor: 'var(--primary-tint)' }}>
+              <Users size={18} color="var(--primary-600)" />
             </div>
           </div>
-          <div style={{ fontSize: '32px', fontWeight: 800, color: '#0f172a', margin: '8px 0 4px' }}>
+          <div className="stat-value" style={{ margin: '6px 0 2px' }}>
             {employees.length}
           </div>
-          <div style={{ fontSize: '12px', color: '#10b981', display: 'flex', alignItems: 'center', gap: '4px' }}>
-            <TrendingUp size={14} /> +12% YoY Organization Growth
+          <div className="stat-meta" style={{ color: 'var(--success-main)', display: 'flex', alignItems: 'center', gap: '4px' }}>
+            <TrendingUp size={13} /> +12% YoY Growth
           </div>
         </div>
 
-        <div className="zp-card" style={{ padding: '20px' }}>
+        <div className="stat-card">
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-            <span style={{ fontSize: '12px', fontWeight: 600, color: '#64748b' }}>ATTENDANCE RATE</span>
-            <div style={{ padding: '8px', borderRadius: '8px', backgroundColor: '#ecfdf5' }}>
-              <Clock size={20} color="#10b981" />
+            <span className="stat-label">ATTENDANCE RATE</span>
+            <div style={{ padding: '6px', borderRadius: 'var(--radius-sm)', backgroundColor: 'var(--success-bg)' }}>
+              <Clock size={18} color="var(--success-main)" />
             </div>
           </div>
-          <div style={{ fontSize: '32px', fontWeight: 800, color: '#0f172a', margin: '8px 0 4px' }}>
+          <div className="stat-value" style={{ margin: '6px 0 2px' }}>
             {attendanceRate}%
           </div>
-          <div style={{ fontSize: '12px', color: '#64748b' }}>Across all shifts this quarter</div>
+          <div className="stat-meta">Across all active shifts</div>
         </div>
 
-        <div className="zp-card" style={{ padding: '20px' }}>
+        <div className="stat-card">
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-            <span style={{ fontSize: '12px', fontWeight: 600, color: '#64748b' }}>ACTIVE DEPARTMENTS</span>
-            <div style={{ padding: '8px', borderRadius: '8px', backgroundColor: '#f5f3ff' }}>
-              <Building size={20} color="#8b5cf6" />
+            <span className="stat-label">ACTIVE DEPARTMENTS</span>
+            <div style={{ padding: '6px', borderRadius: 'var(--radius-sm)', backgroundColor: 'var(--purple-bg)' }}>
+              <Building size={18} color="var(--purple-main)" />
             </div>
           </div>
-          <div style={{ fontSize: '32px', fontWeight: 800, color: '#0f172a', margin: '8px 0 4px' }}>
+          <div className="stat-value" style={{ margin: '6px 0 2px' }}>
             {departments.length}
           </div>
-          <div style={{ fontSize: '12px', color: '#64748b' }}>Engineering, Product, HR, Sales...</div>
+          <div className="stat-meta">Core business units</div>
         </div>
 
-        <div className="zp-card" style={{ padding: '20px' }}>
+        <div className="stat-card">
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-            <span style={{ fontSize: '12px', fontWeight: 600, color: '#64748b' }}>AVERAGE COMPENSATION</span>
-            <div style={{ padding: '8px', borderRadius: '8px', backgroundColor: '#fffbeb' }}>
-              <DollarSign size={20} color="#f59e0b" />
+            <span className="stat-label">AVG BASE SALARY</span>
+            <div style={{ padding: '6px', borderRadius: 'var(--radius-sm)', backgroundColor: 'var(--warning-bg)' }}>
+              <DollarSign size={18} color="var(--warning-main)" />
             </div>
           </div>
-          <div style={{ fontSize: '32px', fontWeight: 800, color: '#0f172a', margin: '8px 0 4px' }}>
+          <div className="stat-value" style={{ margin: '6px 0 2px' }}>
             ${(avgSalary / 1000).toFixed(0)}k
           </div>
-          <div style={{ fontSize: '12px', color: '#64748b' }}>Annual base per FTE</div>
+          <div className="stat-meta">Annual FTE benchmark</div>
         </div>
       </div>
 
