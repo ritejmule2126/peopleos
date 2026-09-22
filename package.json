@@ -5,11 +5,8 @@
   "private": false,
   "type": "module",
   "scripts": {
-    "dev": "concurrently \"npm:server\" \"npm:client\"",
-    "client": "vite --host 127.0.0.1 --port 5173",
-    "server": "node server/index.js",
+    "dev": "vite --host 127.0.0.1 --port 5173",
     "build": "tsc -b && vite build",
-    "start": "node server/index.js",
     "lint": "oxlint",
     "preview": "vite preview"
   },
