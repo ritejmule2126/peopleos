@@ -1,0 +1,10 @@
+{
+  "name": "peopleos-workspace",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "postinstall": "cd humora/web && npm install",
+    "build": "cd humora/web && npm run build",
+    "dev": "cd humora/web && npm run dev"
+  }
+}
