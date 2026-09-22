@@ -1,25 +1,64 @@
-# Logs
-logs
-*.log
+# OS Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Editor & IDE Files
+.idea/
+.vscode/*
+!.vscode/extensions.json
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+*.swo
+
+# Git Backups
+*.git.bak
+.git.bak
+humora/.git.bak
+
+# Node & Frontend Build Artifacts
+node_modules/
+**/node_modules/
+dist/
+**/dist/
+dist-ssr/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
+# Go Binaries & Compilations
+bin/
+**/bin/
+server
+**/server
+worker
+**/worker
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.out
+*.test
 
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
-.DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
-humora/
+# Air & Temporary Live Reload Files
+tmp/
+**/tmp/
+
+# Logs
+logs/
+*.log
+
+# Environment Files
+.env
+.env.*
+!.env.example
