@@ -1,68 +1,45 @@
 <div align="left">
-  <img src="./public/logo.svg" alt="PeopleOS Core Symbol" width="115" height="121" style="border-radius: 6px; margin-bottom: 12px;" />
+  <img src="./frontend/public/logo.svg" alt="PeopleOS Core Symbol" width="100" height="100" style="border-radius: 6px; margin-bottom: 12px;" />
 </div>
 
 # PeopleOS
-### The Modern, Open-Source Alternative to Zoho People & BambooHR.
+### The Modern, Open-Source Enterprise Workday, HRMS & Agile Operating System
 
-<p align="left">
-  <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License: MIT" />
-  <img src="https://img.shields.io/badge/React-19.2-61dafb.svg" alt="React 19" />
-  <img src="https://img.shields.io/badge/TypeScript-6.0-3178c6.svg" alt="TypeScript" />
-  <img src="https://img.shields.io/badge/Vite-8.2-646cff.svg" alt="Vite" />
-  <img src="https://img.shields.io/badge/PRs-Welcome-brightgreen.svg" alt="PRs Welcome" />
-</p>
-
-**PeopleOS** is a comprehensive, open-source Employee Management System (HRMS) built for high-velocity teams, startups, and enterprises that want full control over their people operations and workplace workflows without vendor lock-in.
+**PeopleOS** is an open-source enterprise operating system unifying agile project sprints, biometric workday reconciliation, HRMS administration, and statutory payroll into a single high-velocity platform.
 
 ---
 
-## ✨ Features at a Glance
+## 📂 Repository Architecture
 
-| Module | Features & Capabilities |
-| :--- | :--- |
-| 🏠 **Executive Home** | Live working hours timer, instant check-in/out, break toggle, balance radar, who's out today, manager approval queue, corporate feeds. |
-| 👥 **Core HR & Org Chart** | Card grid, enterprise data table, and interactive **Top-Down Visual Org Chart** hierarchy with slide-over profile drawers & CSV export. |
-| ⏱️ **Time & Attendance** | Real-time shift clock, break duration tracking, monthly attendance metrics, timesheet calendar log, and regularization requests. |
-| 🌴 **Leave Tracker** | Entitlement quotas (Casual, Sick, Privilege, Parental, Unpaid), half/full day applications, dynamic balance deduction, and approval queue. |
-| 🎯 **Performance & KRAs** | Strategic/Operational goal tracking with interactive progress sliders, annual appraisal cycles with star ratings, and peer **Kudos Wall** with confetti. |
-| 🎫 **HR Services & Helpdesk** | Multi-category support cases (IT, Payroll, Leaves, Benefits), priority tiers, status kanban/pipeline, and live threaded discussion. |
-| 📋 **Onboarding Roadmap** | New hire milestones (Documentation, IT Hardware, Orientation, Compliance) with live completion percentage tracking. |
-| 📊 **Workforce Analytics** | Headcount distribution by department and geographic hub, average compensation metrics, attendance trends, and JSON intelligence export. |
-| 🎭 **Persona Switcher** | 1-click switcher between **HR Admin (Sarah Jenkins)**, **Team Manager (Alex Rivera)**, and **Employee (Rohan Deshmukh)**. |
-| ⚡ **Spotlight Search** | Global `⌘K` command palette searching across all employees, cases, leaves, and navigation modules. |
+The repository is structured into two dedicated directories:
 
----
+```
+peopleos/
+├── humora/           # Golang backend microservices, SQL databases, migrations & API endpoints
+└── frontend/         # React 19 + TypeScript + Vite modern web application
+```
 
-## 🛠️ Tech Stack
-
-- **Framework**: React 19 + TypeScript
-- **Bundler**: Vite 8
-- **Icons**: Lucide React
-- **Animations & Effects**: Canvas Confetti
-- **Styling**: Bespoke Vanilla CSS Design System with CSS variables and responsive glassmorphism
-- **Persistence**: Browser `localStorage` with initial enterprise seed dataset
+- **[`humora/`](./humora)**: High-performance Go service powering attendance engines, statutory salary calculation, sprint tracking, and Postgres migrations.
+- **[`frontend/`](./frontend)**: Luxury Champagne Amber Gold & Smoky Obsidian frontend application. See [`frontend/README.md`](./frontend/README.md) for full documentation of every view, component, and workflow.
 
 ---
 
 ## 🚀 Quick Start
 
-### 1. Clone the repository
+### 1. Start Backend (`humora`)
 ```bash
-git clone https://github.com/your-org/peopleos.git
-cd peopleos
+cd humora
+go run ./cmd/server
 ```
+Runs on `http://127.0.0.1:8090`.
 
-### 2. Install dependencies
+### 2. Start Frontend (`frontend`)
 ```bash
+cd frontend
 npm install
-```
-
-### 3. Start development server
-```bash
 npm run dev
 ```
-Open **[http://localhost:5173](http://localhost:5173)** in your browser.
+Runs on `http://localhost:3000/` or `http://localhost:3001/` with automated proxy to backend.
 
 ### 4. Production build
 ```bash
