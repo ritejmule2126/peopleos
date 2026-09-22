@@ -1,4 +1,5 @@
 // Typed HTTP Client for Humora API
+import { isDemoMode, getDemoResponse } from './demoMode';
 
 const BASE_URL = '/api/v1';
 
@@ -27,6 +28,21 @@ export async function apiRequest<T = any>(
   endpoint: string,
   options: RequestInit = {}
 ): Promise<T> {
+  // ── Demo Mode: intercept and return mock data ──
+  if (isDemoMode()) {
+    const method = options.method || 'GET';
+    let body: any;
+    if (options.body && typeof options.body === 'string') {
+      try { body = JSON.parse(options.body); } catch { body = undefined; }
+    }
+    const demo = getDemoResponse(method, endpoint, body);
+    if (demo) {
+      // Simulate realistic network latency (50-200ms)
+      await new Promise((r) => setTimeout(r, 50 + Math.random() * 150));
+      return demo.data as T;
+    }
+  }
+
   const token = getToken();
   const headers: HeadersInit = {
     'Content-Type': 'application/json',
@@ -74,6 +90,15 @@ export const api = {
     }),
   delete: <T = any>(endpoint: string) => apiRequest<T>(endpoint, { method: 'DELETE' }),
   upload: async <T = any>(endpoint: string, formData: FormData): Promise<T> => {
+    // ── Demo Mode: intercept uploads too ──
+    if (isDemoMode()) {
+      const demo = getDemoResponse('POST', endpoint);
+      if (demo) {
+        await new Promise((r) => setTimeout(r, 100 + Math.random() * 300));
+        return demo.data as T;
+      }
+    }
+
     const token = getToken();
     const response = await fetch(`${BASE_URL}${endpoint}`, {
       method: 'POST',
