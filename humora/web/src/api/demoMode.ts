@@ -217,7 +217,7 @@ const DEMO_SHIFTS = [
 ];
 
 const DEMO_PROJECTS = [
-  { id: 'proj-1', tenant_id: DEMO_TENANT_ID, key: 'POS', name: 'PeopleOS Core Platform', lead_id: 'emp-001', lead_name: 'Marcus Vance', workflow_id: 'wf-1', workflow_name: 'Standard Scrum', project_type: 'scrum' as const, last_issue_number: 142, created_at: '2024-05-01T00:00:00Z' },
+  { id: 'proj-1', tenant_id: DEMO_TENANT_ID, key: 'HUM', name: 'Humora Core Platform', lead_id: 'emp-001', lead_name: 'Marcus Vance', workflow_id: 'wf-1', workflow_name: 'Standard Scrum', project_type: 'scrum' as const, last_issue_number: 142, created_at: '2024-05-01T00:00:00Z' },
   { id: 'proj-2', tenant_id: DEMO_TENANT_ID, key: 'MOB', name: 'Mobile App', lead_id: 'emp-003', lead_name: 'Arjun Mehta', workflow_id: 'wf-1', workflow_name: 'Standard Scrum', project_type: 'scrum' as const, last_issue_number: 67, created_at: '2024-08-15T00:00:00Z' },
   { id: 'proj-3', tenant_id: DEMO_TENANT_ID, key: 'INF', name: 'Infrastructure & DevOps', lead_id: 'emp-005', lead_name: 'Vikram Patel', workflow_id: 'wf-2', workflow_name: 'Kanban Flow', project_type: 'kanban' as const, last_issue_number: 38, created_at: '2024-11-01T00:00:00Z' },
 ];

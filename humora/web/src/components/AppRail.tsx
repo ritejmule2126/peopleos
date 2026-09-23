@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useAppDispatch, useAppSelector, usePulseStore } from '../store/store';
 import { navigateToPage, setWorkspace, toggleSidebar } from '../store/uiSlice';
 import { logout } from '../store/authSlice';
-import { PeopleOSLogo } from './PeopleOSLogo';
+import { HumoraLogo } from './HumoraLogo';
 import {
   Kanban,
   Search,
@@ -73,10 +73,10 @@ export const AppRail: React.FC<{ onOpenCommandPalette?: () => void }> = ({
             transition: 'transform var(--transition-fast), border-color var(--transition-fast)',
             padding: 0,
           }}
-          title="PeopleOS Platform (My Workday Hub)"
+          title="Humora Platform (My Workday Hub)"
           onClick={() => dispatch(navigateToPage('hub'))}
         >
-          <PeopleOSLogo size={24} />
+          <HumoraLogo size={24} />
         </button>
 
         <div style={{ width: '28px', height: '1px', background: 'var(--border-hairline)' }} />
@@ -365,7 +365,7 @@ export const AppRail: React.FC<{ onOpenCommandPalette?: () => void }> = ({
                 }}
                 onClick={() => {
                   setIsProfileFlyoutOpen(false);
-                  if (confirm('Sign out from PeopleOS?')) dispatch(logout());
+                  if (confirm('Sign out from Humora?')) dispatch(logout());
                 }}
               >
                 <LogOut size={13} />

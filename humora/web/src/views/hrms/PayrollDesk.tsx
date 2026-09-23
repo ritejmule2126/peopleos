@@ -30,7 +30,7 @@ import { Payslip, ITDeclaration, ReimbursementClaim } from '../../types';
 import { formatINR } from '../../utils/numberToWords';
 import { PayslipDocumentModal } from './PayslipDocumentModal';
 import { PayrollRunModal } from './PayrollRunModal';
-import { PeopleOSLogo } from '../../components/PeopleOSLogo';
+import { HumoraLogo } from '../../components/HumoraLogo';
 
 export const PayrollDesk: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -223,8 +223,8 @@ export const PayrollDesk: React.FC = () => {
               textTransform: 'uppercase',
             }}
           >
-            <PeopleOSLogo size={14} />
-            <span>PeopleOS &bull; Payroll & Compensation Hub</span>
+            <HumoraLogo size={14} />
+            <span>Humora &bull; Payroll & Compensation Hub</span>
           </div>
           <h1
             style={{
@@ -747,7 +747,7 @@ export const PayrollDesk: React.FC = () => {
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--text-primary)', fontWeight: 600, fontSize: '14px' }}>
               <Calculator size={16} color="var(--accent-primary)" />
-              <span>How PeopleOS Calculates Your Salary</span>
+              <span>How Humora Calculates Your Salary</span>
             </div>
 
             <div
